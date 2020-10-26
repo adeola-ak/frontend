@@ -1,7 +1,7 @@
 import React from 'react';
 import './Search.css';
 
-function Search() {
+function Search(props) {
     // State Live here
     // state is for form values in a object
     const [formData, setFormData] = React.useState({restaurant: '', zipcode: ''})
@@ -10,9 +10,17 @@ function Search() {
     const handleChange = (event) => {
         event.preventDefault()
         setFormData({...formData, [event.target.name]: event.target.value})
-    }
+	}
+
+	const handleSubmit = (event) => {
+		console.log("Search submit button clicked!")
+		event.preventDefault(); 
+		props.handleSubmit(formData); 
+		// props.history.push("/"); 
+  };
+
 	return (
-		<form>
+		<form onSubmit={handleSubmit}>
 			<input
 				type='text'
 				name='restaurant'
