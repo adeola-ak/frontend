@@ -16,7 +16,7 @@ function Search(props) {
 		console.log("Search submit button clicked!")
 		event.preventDefault(); 
 		props.handleSubmit(formData); 
-		// props.history.push("/"); 
+		props.history.push("/restaurant"); 
   };
 
 	return (
