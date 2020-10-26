@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
-import { Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Search from './components/Search/Search'
+import Restaurant from './components/Restaurant/Restaurant'
 
 function App() {
     // URL VARIABLE
@@ -10,23 +11,28 @@ function App() {
   // State
   const [restaurantData, setRestaurantData] = useState([])
 
+  // State searched Restaurant
+   const [searchedRestaurant, setSearchedRestaurant] = useState([])
+
   // API Call to fetch Restaurants
     const getRestaurants = () => {
       fetch(url + "restaurants/")
       .then(response => response.json())
       .then(data => {
-        setRestaurantData(data)   
+        console.log("data", data.restuarants)
+        setRestaurantData(data.restuarants)   
       })
     }
 
    // Get list of restaurants on page load  
   useEffect( () => getRestaurants(), [])
 
+
     console.log("This is restaurant data", restaurantData)
   // handleUpdate to update restautant when Search button is clicked
   // method: put (update)
   const handleUpdate = (restaurant) => {
-    fetch(url + "restaurant/" + restaurant.name, {
+    fetch(url + "restaurants/" + restaurant.name, {
       method: "put",
       headers: {
         "Content-Type": "application/json"
@@ -37,19 +43,29 @@ function App() {
     console.log("This is the restaurant data sent", restaurant)
   }
 
+
+  console.log("This is the restaurantData state", restaurantData)
+ console.log("This is the searchedRestaurant state", searchedRestaurant)
+
   return (
     <div className="App">
       <main>
         <h1>PALATE App Component</h1>
 
+        <Switch>
 
+        
 
-        <Route exact path="/"
-        render={(routerprops) => 
-        <Search {...routerprops} handleSubmit={handleUpdate} /> }
-        />
+          <Route exact path="/"
+            render={(routerprops) => 
+            <Search {...routerprops} handleSubmit={handleUpdate} /> }
+          />
 
-
+          <Route exact path="/restaurant"
+              render={(routerprops) => 
+              <Restaurant {...routerprops} restaurantData={restaurantData}  />}
+          />
+        </Switch>
       </main>
 
     </div>
