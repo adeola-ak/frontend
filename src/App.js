@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import { Route } from "react-router-dom";
 import Search from './components/Search/Search'
+import Nav from './shared/Nav'
 
 function App() {
     // URL VARIABLE
@@ -41,7 +42,7 @@ function App() {
     <div className="App">
       <main>
         <h1>PALATE App Component</h1>
-
+        <Nav />
 
 
         <Route exact path="/"
