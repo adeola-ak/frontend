@@ -1,15 +1,19 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import { Switch, Route } from "react-router-dom";
-import Search from './components/Search/Search'
+import { Route, Switch } from 'react-router-dom';
+// import components
+import Search from './components/Search/Search';
+import About from './components/About/About'
+import Nav from './shared/Nav';
 import Restaurant from './components/Restaurant/Restaurant'
 
-function App() {
-    // URL VARIABLE
-  const url = "https://aa-palate-backend.herokuapp.com/"
 
-  // State
-  const [restaurantData, setRestaurantData] = useState([])
+function App() {
+	// URL VARIABLE
+	const url = 'https://aa-palate-backend.herokuapp.com/';
+
+	// State
+	const [restaurantData, setRestaurantData] = useState([]);
 
   // State searched Restaurant
    const [searchedRestaurant, setSearchedRestaurant] = useState([])
@@ -24,9 +28,8 @@ function App() {
       })
     }
 
-   // Get list of restaurants on page load  
-  useEffect( () => getRestaurants(), [])
-
+	// Get list of restaurants on page load
+	useEffect(() => getRestaurants(), []);
 
     console.log("This is restaurant data", restaurantData)
   // handleUpdate to update restautant when Search button is clicked
@@ -51,11 +54,9 @@ function App() {
     <div className="App">
       <main>
         <h1>PALATE App Component</h1>
-
+        <Nav />
         <Switch>
-
         
-
           <Route exact path="/"
             render={(routerprops) => 
             <Search {...routerprops} handleSubmit={handleUpdate} /> }
@@ -65,6 +66,11 @@ function App() {
               render={(routerprops) => 
               <Restaurant {...routerprops} restaurantData={restaurantData}  />}
           />
+
+          <Route path='/About'>
+          <About />
+          </Route>
+
         </Switch>
       </main>
 
