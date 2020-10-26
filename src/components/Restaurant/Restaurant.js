@@ -9,9 +9,10 @@ let restaurantsToDisplay = 'loading...'
     restaurantsToDisplay = props.restaurantData.map( (restaurant) => {
       return ( 
         <div>
-            <p>Name: {restaurant.name}</p>
-            <img src={restaurant.img} />
+            <p>Restaurant Name: {restaurant.name}</p>
             <p>Zipcode: {restaurant.zipcode}</p>
+            <img src={restaurant.img} />
+          
 
         {/* <button onClick={() => {
             props.selectPerson(person)
@@ -39,44 +40,3 @@ console.log("testing", test)
 }
 
 export default Restaurant;
-
-
-
-
-//     const restaurants = props.restaurantData
-//     console.log("restaurants props", props.restaurantData)
-//   const loaded = () => (
-//     <div>
-//       {restaurants.map((restaurant) => (
-//         <article>
-//           <img src={restaurant.img} />
-//           <h1>{restaurant.name}</h1>
-//           <h3>{restaurant.zipcode}</h3>
-          {/* <button onClick={() => {
-            props.selectDog(dog)        
-            props.history.push("/edit")
-          }}>
-            Edit
-          </button>
-
-           <button onClick={() => {
-            props.deleteDog(dog)        
-          }}>
-            Delete
-          </button> */}
-{/* 
-        </article>
-      ))}
-      </div>
-  ) */}
-
-//   if (restaurants[0]) {
-//       loaded()
-//   }
-    // return (
-    //     <div>
-    //     <h1>Restaurant Component</h1>
-
-    //     { restaurants.length >= 0 ? loaded() : <h1>Loading...</h1> }
-    //     </div>
-    // )
