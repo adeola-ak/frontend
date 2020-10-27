@@ -2,26 +2,16 @@ import React from 'react';
 import './Restaurant.css';
 
 function Restaurant(props) {
-let test = props.restaurantData
+let test = props.searchedRestaurant
 
-let restaurantsToDisplay = 'loading...'
-  if(props.restaurantData[0]) {
-    restaurantsToDisplay = props.restaurantData.map( (restaurant) => {
+let restaurantsToDisplay = 'Loading...'
+  if(props.searchedRestaurant[0]) {
+    restaurantsToDisplay = props.searchedRestaurant.map( (restaurant) => {
       return ( 
         <div>
             <p>Restaurant Name: {restaurant.name}</p>
             <p>Zipcode: {restaurant.zipcode}</p>
             <img src={restaurant.img} />
-          
-
-        {/* <button onClick={() => {
-            props.selectPerson(person)
-           props.history.push("/edit") 
-        }}>Edit</button> */}
-
-        {/* <button onClick={() => {
-            props.deletePersonEntry(person)   
-        }}>Delete</button> */}
         <hr />
        
         </div>
@@ -29,12 +19,10 @@ let restaurantsToDisplay = 'loading...'
     })
   }
 
-console.log("testing", test)
-
     return (
         <div>
-        <h1>Restaurant Component</h1>
-        {restaurantsToDisplay}
+          <h1>Restaurant Component</h1>
+          {restaurantsToDisplay}
         </div>
     )
 }
