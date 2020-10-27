@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import { Route, Switch } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import { Route, Switch } from "react-router-dom";
 // import components
-import Search from './components/Search/Search';
-import About from './components/About/About'
-import Nav from './shared/Nav';
-import Restaurant from './components/Restaurant/Restaurant'
-
+import Search from "./components/Search/Search";
+import About from "./components/About/About";
+import Nav from "./shared/Nav";
+import Restaurant from "./components/Restaurant/Restaurant";
 
 function App() {
 	// URL VARIABLE
-	const url = 'https://aa-palate-backend.herokuapp.com/';
+	const url = "https://aa-palate-backend.herokuapp.com/";
 
 	// State for all restaurants
 	const [restaurantData, setRestaurantData] = useState([]);
+
 
   // State for restaurants searched through Search bar
    const [searchedRestaurant, setSearchedRestaurant] = useState([])
@@ -27,6 +27,7 @@ function App() {
         setRestaurantData(data.restaurants)   
       })
     }
+
 
 	// Get list of restaurants on page load (not currently doing anything)
 	useEffect(() => getRestaurants(), []);
@@ -73,12 +74,10 @@ function App() {
           <Route path='/About'>
             <About />
           </Route>
-
-        </Switch>
-      </main>
-
-    </div>
-  );
+				</Switch>
+			</main>
+		</div>
+	);
 }
 
 export default App;
