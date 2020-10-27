@@ -36,6 +36,7 @@ function App() {
        fetch(url + "restaurants/")
        .then(response => response.json())
        .then(data => {
+         console.log("data !!", data)
           let rest = data.restaurants
           console.log("restaurant from search form", restaurant)
           rest.map( (r) => {
