@@ -14,66 +14,76 @@ function App() {
 	// State for all restaurants
 	const [restaurantData, setRestaurantData] = useState([]);
 
+	// State for restaurants searched through Search bar
+	const [searchedRestaurant, setSearchedRestaurant] = useState([]);
 
-  // State for restaurants searched through Search bar
-   const [searchedRestaurant, setSearchedRestaurant] = useState([])
-
-  // API Call to fetch Restaurants (not currently doing anything)
-    const getRestaurants = () => {
-      fetch(url + "restaurants/")
-      .then(response => response.json())
-      .then(data => {
-        console.log("data", data.restaurants)
-        setRestaurantData(data.restaurants)   
-      })
-    }
-
+	// API Call to fetch Restaurants (not currently doing anything)
+	const getRestaurants = () => {
+		fetch(url + "restaurants/")
+			.then((response) => response.json())
+			.then((data) => {
+				console.log("data", data.restaurants);
+				setRestaurantData(data.restaurants);
+			});
+	};
 
 	// Get list of restaurants on page load (not currently doing anything)
 	useEffect(() => getRestaurants(), []);
 
-  //handleSubmit to update state when Search submit is clicked
-   const handleSubmit = (restaurant) => {
-       fetch(url + "restaurants/")
-       .then(response => response.json())
-       .then(data => {
-         console.log("data !!", data)
-          let rest = data.restaurants
-          console.log("restaurant from search form", restaurant)
-          rest.map( (r) => {
-            if(restaurant.restaurant === r.name) {
-              setSearchedRestaurant([r])  
-            } else {
-              console.log(r.name)
-            }
-          })
-        })
-    }
+	//handleSubmit to update state when Search submit is clicked
+	const handleSubmit = (restaurant) => {
+		fetch(url + "restaurants/")
+			.then((response) => response.json())
+			.then((data) => {
+				console.log("data !!", data);
+				let rest = data.restaurants;
+				console.log("restaurant from search form", restaurant);
+				rest.map((r) => {
+					if (restaurant.restaurant === r.name) {
+						setSearchedRestaurant([r]);
+					} else {
+						console.log(r.name);
+					}
+				});
+			});
+	};
 
-  console.log("This is the restaurantData state", restaurantData)
-  console.log("This is the searchedRestaurant state", searchedRestaurant)
+	console.log("This is the restaurantData state", restaurantData);
+	console.log("This is the searchedRestaurant state", searchedRestaurant);
 
-  return (
-    <div className="App">
-      <main>
-        <h1>PALATE App Component</h1>
-        <Nav />
+	return (
+		<div className="App">
+			<main>
+				<h1>PALATE App Component</h1>
+				<Nav />
 
-        <Switch>
-        
-          <Route exact path="/"
-            render={(routerprops) => 
-            <Search {...routerprops} handleSubmit={handleSubmit} /> }
-          />
+				<Switch>
+					<Route
+						exact
+						path="/"
+						render={(routerprops) => (
+							<Search
+								{...routerprops}
+								handleSubmit={handleSubmit}
+							/>
+						)}
+					/>
 
-          <Route exact path="/restaurant"
-              render={(routerprops) => 
-              <Restaurant {...routerprops} restaurantData={restaurantData} searchedRestaurant={searchedRestaurant} />}
-          />
+					<Route
+						exact
+						path="/restaurant"
+						render={(routerprops) => (
+							<Restaurant
+								{...routerprops}
+								restaurantData={restaurantData}
+								searchedRestaurant={searchedRestaurant}
+							/>
+						)}
+					/>
 
-          <Route path='/About'>
-            <About />
-          </Route>
+					<Route path="/About">
+						<About />
+					</Route>
 				</Switch>
 			</main>
 		</div>
