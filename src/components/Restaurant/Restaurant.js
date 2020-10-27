@@ -16,7 +16,7 @@ function Restaurant(props) {
 					<img src={restaurant.img} />
 					<p>Items: {restaurant.items[0].name}</p>
 
-					<Link to="/restaurant">
+					<Link to={`/restaurant/${restaurant._id}`}>
 						<button>List of Menu Items</button>
 					</Link>
 					<hr />
@@ -32,7 +32,7 @@ function Restaurant(props) {
 
 			<Route
 				exact
-				path="/restaurant"
+				path="/restaurant/:id"
 				render={(routerprops) => (
 					<ItemList searchedRestaurant={props.searchedRestaurant} />
 				)}
