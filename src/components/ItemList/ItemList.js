@@ -22,6 +22,8 @@ function ItemList(props) {
 
 	const [resItems, setResItems] = React.useState([]);
 
+	// const [itemId, setItemId] = React.useState([])
+
 	//EMPTY ITEM
 	const emptyItem = {
 		name: "",
@@ -42,24 +44,71 @@ function ItemList(props) {
 
 	// React.useEffect(() => getDogs(), []);
 
-	//handleCreate function for creating new dogs
+	//handleCreate function for creating new items
 	const handleCreate = (newItem) => {
+		let payload = {newItem, restId: props.match.params._id}
+
 		fetch(url + "items", {
 			method: "post",
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify(newItem),
-		}).then(() => {
-			// don't need the response from the post but will be using the .then to update the list of dogs
+			body: JSON.stringify(payload),
+		}).then(()=> {
+			//   itemId = res.json()
+			//   return itemId
+			  getItems();
+		  })
+		
+		// console.log("new item", newItem);
 
-			setResItems(emptyItem);
-			getItems();
-		});
-		console.log("new item", newItem);
+		// console.log("checking itemId variable", itemId)
+
+			// fetch to add item to restaurant
+		// fetch(url + "restaurants/" + props.searchedRestaurant._id + "/addItem/" + itemId, {
+		// 	method: "put",
+		// 	headers: {
+		// 		"Content-Type": "application/json",
+		// 	},
+		// 	body: JSON.stringify(newItem),
+		// }).then(() => {
+		// 	// don't need the response from the post but will be using the .then to update the list of dogs
+
+			
+		// });
 	};
 
-	//handleUpdate function for updating dogs
+	//.then((response) => response.json())
+		//	.then((data) => {
+
+		// let rest = props.searchedRestaurant;
+		// 	console.log("looking for restaurant in itemList", rest);
+		// 	rest.map((r) => {
+		// 			if (newItem.name) {
+		// 				setItemId([r]);
+		// 			} else {
+		// 				console.log("Something didn't work", r.name);
+		// 			}
+		// 		})
+		// 	console.log("itemId", itemId)
+
+		// fetch to add item to restaurant
+		// fetch(url + "restaurants/" + props.searchedRestaurant._id + "/addItem/" + newItem._id, {
+		// 	method: "put",
+		// 	headers: {
+		// 		"Content-Type": "application/json",
+		// 	},
+		// 	body: JSON.stringify(newItem),
+		// }).then(() => {
+		// 	// don't need the response from the post but will be using the .then to update the list of dogs
+
+		// 	setResItems(emptyItem);
+		// 	getItems();
+		// });
+		
+
+
+	//handleUpdate function for updating items
 	const handleUpdate = (newItem) => {
 		fetch(url + "items/" + newItem._id, {
 			method: "put",
@@ -73,7 +122,7 @@ function ItemList(props) {
 		});
 	};
 
-	//deleteDog to delete a dog
+	//deleteItemto delete an item
 	const deleteItem = (item) => {
 		fetch(url + "/:id/" + item._id, {
 			method: "delete",
@@ -84,10 +133,9 @@ function ItemList(props) {
 		<>
 			<h2>This is the ItemList Component</h2>
 			{itemsToDisplay}
-
+			<Switch>
 			<Route
-				exact
-				path="/restaurant"
+				path="/restaurant/:id"
 				render={(routerprops) => (
 					<ItemForm
 						{...routerprops}
@@ -98,7 +146,6 @@ function ItemList(props) {
 			/>
 
 			<Route
-				exact
 				path="/restaurant"
 				render={(routerprops) => (
 					<ItemForm
@@ -108,6 +155,7 @@ function ItemList(props) {
 					/>
 				)}
 			/>
+		</Switch>
 		</>
 	);
 }
