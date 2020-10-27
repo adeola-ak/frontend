@@ -1,14 +1,16 @@
 import React from "react";
+import { Route } from "react-router-dom";
 
 const ItemForm = (props) => {
 	//STATE FOR THE FORM
-	const [formData, setFormData] = React.useState(props.restaurantData);
-	console.log("props", props.restaurantData);
+	const [formData, setFormData] = React.useState(props.item);
+
 	//FUNCTIONS
 	const handleSubmit = (event) => {
 		event.preventDefault(); // Prevent Form from Refreshing
 		props.handleSubmit(formData); // Submit to Parents desired function
-		props.history.push("/"); //Push back to display page
+		props.history.push("/restaurant"); //Push back to display page
+		console.log("submit button", event);
 	};
 
 	const handleChange = (event) => {
@@ -30,26 +32,22 @@ const ItemForm = (props) => {
 			<input
 				type="text"
 				name="type"
+				value={formData.type}
 				onChange={handleChange}
-				placeholder=""
+				placeholder="type of menu item"
 			/>
 
-			<select
-				value={formData.type}
-				type="text"
-				name="type"
-				onChange={handleChange}
-			>
-				<option value="Ford">Burger</option>
-				<option value="Volvo">Pizza</option>
-				<option value="Fiat">Pasta</option>
-				<option value="Fiat">Salad</option>
-				<option value="Fiat">Sandwhich</option>
-				<option value="Fiat">Wrap</option>
-				<option value="Fiat">Beef</option>
-				<option value="Fiat">Poultry</option>
-				<option value="Fiat">Seafood</option>
-			</select>
+			{/* <select type="text" name="type" onChange={handleChange}>
+				<option value="Burger">Burger</option>
+				<option value="Pizza">Pizza</option>
+				<option value="Pasta">Pasta</option>
+				<option value="Salad">Salad</option>
+				<option value="Sandwhich">Sandwhich</option>
+				<option value="Wrap">Wrap</option>
+				<option value="Beef">Beef</option>
+				<option value="Poultry">Poultry</option>
+				<option value="Seafood">Seafood</option>
+			</select> */}
 
 			<input
 				type="text"
