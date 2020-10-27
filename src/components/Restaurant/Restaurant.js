@@ -2,7 +2,6 @@ import React from 'react';
 import './Restaurant.css';
 
 function Restaurant(props) {
-let test = props.searchedRestaurant
 
 let restaurantsToDisplay = 'Loading...'
   if(props.searchedRestaurant[0]) {
