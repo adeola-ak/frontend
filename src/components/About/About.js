@@ -38,18 +38,30 @@ function About() {
 			}
 		}
 	}
+	let num = 0;
+	const [favStar, setFavStar] = useState(0);
 	// handles Star Ratings
 	function star1() {
 		if (favStar === 0) {
 			return (
-				<div >
-					<FontAwesomeIcon id='1' onClick={handleClick} icon={holyStar} size='2x' />
+				<div>
+					<FontAwesomeIcon
+						id='1'
+						onClick={handleClick}
+						icon={holyStar}
+						size='2x'
+					/>
 				</div>
 			);
 		} else {
 			return (
 				<div>
-					<FontAwesomeIcon id='1' onClick={handleClick} icon={solidStar} size='2x' />
+					<FontAwesomeIcon
+						id='1'
+						onClick={handleClick}
+						icon={solidStar}
+						size='2x'
+					/>
 				</div>
 			);
 		}
@@ -58,13 +70,23 @@ function About() {
 		if (favStar > 1) {
 			return (
 				<div>
-					<FontAwesomeIcon id='2' onClick={handleClick} icon={solidStar} size='2x' />
+					<FontAwesomeIcon
+						id='2'
+						onClick={handleClick}
+						icon={solidStar}
+						size='2x'
+					/>
 				</div>
 			);
 		} else {
 			return (
 				<div>
-					<FontAwesomeIcon id='2' onClick={handleClick} icon={holyStar} size='2x' />
+					<FontAwesomeIcon
+						id='2'
+						onClick={handleClick}
+						icon={holyStar}
+						size='2x'
+					/>
 				</div>
 			);
 		}
@@ -73,13 +95,23 @@ function About() {
 		if (favStar > 2) {
 			return (
 				<div>
-					<FontAwesomeIcon id='3' onClick={handleClick} icon={solidStar} size='2x' />
+					<FontAwesomeIcon
+						id='3'
+						onClick={handleClick}
+						icon={solidStar}
+						size='2x'
+					/>
 				</div>
 			);
 		} else {
 			return (
 				<div>
-					<FontAwesomeIcon id='3' onClick={handleClick} icon={holyStar} size='2x' />
+					<FontAwesomeIcon
+						id='3'
+						onClick={handleClick}
+						icon={holyStar}
+						size='2x'
+					/>
 				</div>
 			);
 		}

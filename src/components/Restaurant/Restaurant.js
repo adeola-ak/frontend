@@ -34,9 +34,8 @@ function Restaurant(props) {
 				exact
 				path="/restaurant/:id"
 				render={(routerprops) => (
-					<ItemList searchedRestaurant={props.searchedRestaurant} />
-				)}
-			/>
+					<ItemList {...routerprops} searchedRestaurant={props.searchedRestaurant} 
+				/> )}/>
 		</div>
 	);
 }
