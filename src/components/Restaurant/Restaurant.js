@@ -13,13 +13,13 @@ function Restaurant(props) {
 				<div>
 					<p>Restaurant Name: {restaurant.name}</p>
 					<p>Zipcode: {restaurant.zipcode}</p>
-					<img src={restaurant.img} />
+					<img style={{ height: '16em' }}  src={restaurant.img} />
 					<p>Items: {restaurant.items[0].name}</p>
 
 					<Link to={`/restaurant/${restaurant._id}`}>
 						<button>List of Menu Items</button>
 					</Link>
-					{ restaurantId = restaurant._id} 
+					{(restaurantId = restaurant._id)}
 					<hr />
 				</div>
 			);

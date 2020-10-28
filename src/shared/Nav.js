@@ -21,21 +21,21 @@ function Nav() {
         nav.style.display = 'none'
     }
 	return (
-		<>
-			<header className='navBar'>
-				<Link to='/' onClick={handleClick}>
-					<div className='appTitle'>PALATE</div>
+		<div className='navBar'>
+			<header className='mobileNavBar'>
+				<Link className='appTitle' to='/' onClick={handleClick}>
+					<div>PALATE</div>
 				</Link>
 				<div className='navIcon' onClick={handleClickBars}>
-					<FontAwesomeIcon icon={faBars} size='2x' />
+					<FontAwesomeIcon icon={faBars} />
 				</div>
 			</header>
 			<nav id='linksList'>
-				<Link to='/About' onClick={handleClick}>
+				<Link className='navAbout' to='/About' onClick={handleClick}>
 					About
 				</Link>
 			</nav>
-		</>
+		</div>
 	);
 }
 
