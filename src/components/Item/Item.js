@@ -8,10 +8,11 @@ function Item(props) {
    
 	let example = props.newItemState
 	let renderItems = "Loading...";
+	let renderSubArray = ""
 	if (props.newItemState[0]) {
         // example = props.newItemState[0]
 		renderItems = example.map((subarray) => {
-				subarray.items.map((item, index) => {
+				renderSubArray = subarray.items.map((item, index) => {
 					console.log("testing the subarray.items.map", item, index)
 					return (
 						
@@ -36,7 +37,12 @@ function Item(props) {
 							<hr />
 						</div>
 					)
+				
 				})
+				
+				return [renderSubArray]
+					
+				// return <h1>2nd return</h1>
 		})
 
 		let info = example[0].items[0].name
