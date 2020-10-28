@@ -1,13 +1,45 @@
-.searchForm {
-    padding: 150px 20px;
-    /* image belongs to Rere Dina https://id.pinterest.com/rerediena/amoled-food/ */
-    background-image: url(https://i.pinimg.com/originals/e6/fa/3d/e6fa3da270a13f1b8f9d3b8ad132fd00.jpg);
-    height: 400px;
-    background-size: cover;
+@media only screen and (max-width: 600px) {
+	.searchForm {
+		padding: 150px 20px;
+		/* image belongs to Rere Dina https://id.pinterest.com/rerediena/amoled-food/ */
+		background-image: url(https://i.pinimg.com/originals/e6/fa/3d/e6fa3da270a13f1b8f9d3b8ad132fd00.jpg);
+		height: 400px;
+		background-size: cover;
+	}
+	input {
+		font-size: 20px;
+	}
+	.inputZipCode {
+		max-width: 75px;
+	}
 }
-input {
-    font-size: 20px;
+@media only screen and (max-width: 1000px) and (min-width: 601px) {
+    .searchForm {
+		padding: 200px 20px;
+		/* image belongs to Ranim Salame https://ranimsalame.com/category/health-wellness/ */
+		background-image: url(https://ranimsalame.com/wp-content/uploads/2019/09/photo-1543352634-a1c51d9f1fa7.jpg);
+		height: 200px;
+		background-size: cover;
+	}
+	input {
+		font-size: 30px;
+	}
+	.inputZipCode {
+		max-width: 140px;
+	}
 }
-.inputZipCode {
-    max-width: 75px;
+@media only screen and (min-width: 1001px) {
+    .searchForm {
+		padding: 200px 20px;
+		/* image belongs to Ranim Salame https://ranimsalame.com/category/health-wellness/ */
+		background-image: url(https://wallpapercave.com/wp/wp3105346.jpg);
+		height: 330px;
+		background-size: cover;
+	}
+	input {
+		font-size: 40px;
+	}
+	.inputZipCode {
+		max-width: 150px;
+	}
 }
