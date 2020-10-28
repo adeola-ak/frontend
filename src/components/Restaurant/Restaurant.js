@@ -19,7 +19,7 @@ function Restaurant(props) {
 					<Link to={`/restaurant/${restaurant._id}`}>
 						<button>List of Menu Items</button>
 					</Link>
-					{ restaurantId = restaurant._id} 
+					{/* { restaurantId = restaurant._id}  */}
 					<hr />
 				</div>
 			);
