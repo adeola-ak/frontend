@@ -1,9 +1,36 @@
+.navBar {
+    position: sticky;
+    top: 0px;
+    z-index: 1px;
+}
 #linksList {
     display: none;
     justify-content: center;
+    background-color: lightgrey;
+    font-size: 30px;
+    padding: 10px;
 }
-.navBar {
+.mobileNavBar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    /* please change */
+    background-color: grey;
+    
 }
+.navAbout {
+    text-decoration: none;
+    color: black;
+}
+/* font size of .appTitle and .navIcon need to be modified together to make it look good. the Icon has empty space as part of its size so it has to be adjusted manually */
+.appTitle {
+    text-decoration: none;
+    color: black;
+    font-size: 40px;
+    padding: 10px
+}
+.navIcon {
+    font-size: 46px;
+    padding: 7px 10px
+}
+/* Connected to comment above */

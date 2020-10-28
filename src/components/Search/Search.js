@@ -20,7 +20,7 @@ function Search(props) {
   };
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form className='searchForm' onSubmit={handleSubmit}>
 			<input
 				type='text'
 				name='restaurant'
@@ -29,6 +29,7 @@ function Search(props) {
 				onChange={handleChange}
 			/>
 			<input
+				className="inputZipCode"
 				type='number'
 				name='zipcode'
 				placeholder='ZipCode'
