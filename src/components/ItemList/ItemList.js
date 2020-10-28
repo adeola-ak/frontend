@@ -20,14 +20,14 @@ function ItemList(props) {
 	// }
 
 	console.log("testing routerprops in ItemList", props.match.params);
-	const id = props.match.params.id
+	const id = props.match.params.id;
 	console.log("testing routerprops in ItemList - exampleId", id);
 
 	const url = "https://aa-palate-backend.herokuapp.com/";
 
 	const [resItems, setResItems] = React.useState([]);
 
-	const [newItemState, setNewItemState] = React.useState([])
+	const [newItemState, setNewItemState] = React.useState([]);
 
 	//EMPTY ITEM
 	const emptyItem = {
@@ -39,6 +39,8 @@ function ItemList(props) {
 	const [selectedItem, setSelectedItem] = React.useState(emptyItem);
 
 	const [form, setForm] = React.useState(emptyItem);
+
+	const [isDeleted, setIsDeleted] = React.useState(false);
 
 	// GET LIST OF ITEMS FUNCTION
 	const getItems = () => {
@@ -72,10 +74,9 @@ function ItemList(props) {
 			
 	}
 
-
 	//handleCreate function for creating new items
 	const handleCreate = (newItem) => {
-		let payload = {newItem, restId: props.match.params.id}
+		let payload = { newItem, restId: props.match.params.id };
 
 		fetch(url + "items", {
 			method: "post",
@@ -86,9 +87,8 @@ function ItemList(props) {
 		}).then((response)=> {
 			//   itemId = res.json()
 			//   return itemId
-		
-			//   getItems();
 
+			//   getItems();
 			  updateRestaurantList()
 			//   props.history.push(`/restaurant/${props.match.params.id}`)
 		  })
@@ -109,36 +109,50 @@ function ItemList(props) {
 		// 	setResItems(emptyItem);
 		// 	getItems();
 		// });
-		
-
+	
+	// 	setResItems(emptyItem);
+	// 	getItems();
+	// });
 
 	//handleUpdate function for updating items
 	const handleUpdate = (newItem) => {
-		fetch(url + "items/" + newItem._id, {
+		fetch(url + "items/" + id, {
 			method: "put",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(newItem),
 		}).then(() => {
-			
 			getItems();
 		});
 	};
 
-	//deleteItemto delete an item
-	const deleteItem = (item) => {
-		fetch(url + "/:id/" + item._id, {
+	// deleteItemto delete an item
+	const deleteItem = (resItems) => {
+		fetch(url + "items/" + resItems._id, {
 			method: "delete",
-		}).then((response) => getItems());
+		}).then(() => setIsDeleted(true));
 	};
 
-	const selectItem = (item) => {
-    	setSelectedItem(item)
+	if (!resItems) {
+		return <p>Loading...</p>;
 	}
-	
-console.log("newItem state", newItemState)
 
+	if (isDeleted) {
+		console.log("ITEM DELETED");
+		return getItems();
+	}
+
+	// // deleteItemto delete an item
+	// const deleteItem = (resItems) => {
+	// 	fetch(url + "items/" + resItems._id, {
+	// 		method: "delete",
+	// 	}).then((response) => getItems());
+	// };
+
+	// // const selectItem = (item) => {
+	// // 	setSelectedItem(item);
+	// // };
 
 // Adding the Restuarant Name to top of page 
 	let rName = props.searchedRestaurant
@@ -172,14 +186,15 @@ console.log("newItem state", newItemState)
 						{...routerprops}
 						handleSubmit={handleCreate}
 						item={form}
-					/>	
+					/>
 				)}
-			
 			/>
 
-			<Item newItemState={newItemState} selectItem={selectedItem}
-				deleteItem={deleteItem} />
-		
+			<Item
+				newItemState={newItemState}
+				selectItem={selectedItem}
+				deleteItem={deleteItem}
+			/>
 
 			{/* <Route
 				exact path="/restaurant"
@@ -191,7 +206,6 @@ console.log("newItem state", newItemState)
 					/>
 				)}
 			/> */}
-	
 		</>
 	);
 }

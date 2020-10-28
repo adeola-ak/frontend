@@ -5,7 +5,7 @@ import { Link, Route } from "react-router-dom";
 
 function Restaurant(props) {
 	console.log(props.searchedRestaurant);
-	let restaurantId = ""
+	let restaurantId = "";
 	let restaurantsToDisplay = "Loading...";
 	if (props.searchedRestaurant[0]) {
 		restaurantsToDisplay = props.searchedRestaurant.map((restaurant) => {
@@ -13,7 +13,7 @@ function Restaurant(props) {
 				<div>
 					<p>Restaurant Name: {restaurant.name}</p>
 					<p>Zipcode: {restaurant.zipcode}</p>
-					<img src={restaurant.img} />
+					<img src={restaurant.img} style={{ height: "16em" }} />
 					<p>Items: {restaurant.items[0].name}</p>
 
 					<Link to={`/restaurant/${restaurant._id}`}>
@@ -25,21 +25,20 @@ function Restaurant(props) {
 			);
 		});
 	}
-	console.log("this is the restaurantId", restaurantId)
+	console.log("this is the restaurantId", restaurantId);
 
 	return (
 		<div>
 			<h1>Restaurant Component</h1>
 			{restaurantsToDisplay}
-		
+
 			{/* <Route exact
 				path="/restaurant/:id"
 				render={(routerprops) => (
 					<ItemList {...routerprops} restaurantId={restaurantId} searchedRestaurant={props.searchedRestaurant} />
 				)}
 			/> */}
-
-	</div>
+		</div>
 	);
 }
 
