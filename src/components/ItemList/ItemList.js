@@ -53,12 +53,24 @@ function ItemList(props) {
 		fetch(url + "restaurants/")
 			.then((response) => response.json())
 			.then((data) => {
-				console.log("data - items", props.searchedRestaurant);
+				console.log("data - items", data);
 				setNewItemState(props.searchedRestaurant);
 			});
 	};
 
 	React.useEffect(() => getRestaurantItems(), []);
+
+
+	const updateRestaurantList = () => {
+		fetch(url + "restaurants/" + props.match.params.id)
+			.then((response) => response.json())
+			.then((data) => {
+				console.log("data", data);
+				console.log("data.restaurants", data.restaurants)
+				setNewItemState(data.restaurants);
+			});
+			
+	}
 
 
 	//handleCreate function for creating new items
@@ -76,9 +88,11 @@ function ItemList(props) {
 			//   return itemId
 		
 			//   getItems();
-			  getRestaurantItems()
-		  })
 
+			  updateRestaurantList()
+			//   props.history.push(`/restaurant/${props.match.params.id}`)
+		  })
+		  console.log("newItemState in updateRestaurantList", newItemState)
 		console.log("payload", payload)
 	};
 
