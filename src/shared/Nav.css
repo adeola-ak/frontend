@@ -6,6 +6,9 @@
 #linksList {
     display: none;
     justify-content: center;
+    background-color: lightgrey;
+    font-size: 30px;
+    padding: 10px;
 }
 .mobileNavBar {
     display: flex;
@@ -23,11 +26,11 @@
 .appTitle {
     text-decoration: none;
     color: black;
-    font-size: 30px;
+    font-size: 40px;
     padding: 10px
 }
 .navIcon {
-    font-size: 36px;
+    font-size: 46px;
     padding: 7px 10px
 }
 /* Connected to comment above */
