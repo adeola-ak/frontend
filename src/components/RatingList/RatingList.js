@@ -3,11 +3,8 @@ import RatingForm from '../RatingForm/RatingForm';
 import { Route, Switch } from 'react-router-dom';
 
 function RatingList(props) {
-	let num = 0;
-	// May have to change how this works
-	const [favStar, setFavStar] = useState(0);
 	// handles Star Ratings
-	function star1() {
+	function star1(favStar) {
 		if (favStar === 0) {
 			return (
 				<div>
@@ -32,7 +29,7 @@ function RatingList(props) {
 			);
 		}
 	}
-	function star2() {
+	function star2(favStar) {
 		if (favStar > 1) {
 			return (
 				<div>
@@ -57,7 +54,7 @@ function RatingList(props) {
 			);
 		}
 	}
-	function star3() {
+	function star3(favStar) {
 		if (favStar > 2) {
 			return (
 				<div>
@@ -83,12 +80,11 @@ function RatingList(props) {
 		}
 	}
 	function stars(rating) {
-		setFavStar(rating);
 		return (
 			<>
-				{star1()}
-				{star2()}
-				{star3()}
+				{star1(rating)}
+				{star2(rating)}
+				{star3(rating)}
 			</>
 		);
 	}
