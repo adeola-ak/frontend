@@ -38,7 +38,8 @@ function Restaurant(props) {
 					<ItemList {...routerprops} restaurantId={restaurantId} searchedRestaurant={props.searchedRestaurant} />
 				)}
 			/> */}
-		</div>
+
+	</div>
 	);
 }
 
