@@ -9,7 +9,7 @@ const ItemForm = (props) => {
 	const handleSubmit = (event) => {
 		event.preventDefault(); // Prevent Form from Refreshing
 		props.handleSubmit(formData); // Submit to Parents desired function
-		props.history.push("/restaurant"); //Push back to display page
+		props.history.push(`/restaurant/${props.match.params.id}`); //Push back to display page
 		console.log("submit button", event);
 	};
 
@@ -63,11 +63,3 @@ const ItemForm = (props) => {
 };
 
 export default ItemForm;
-
-
-{/* <input 
-type="hidden"
-name="key"
-value={formData.key}
-onChange={handleChange}
-/> */}
