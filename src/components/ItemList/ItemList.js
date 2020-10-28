@@ -1,23 +1,23 @@
 import React from "react";
 import ItemForm from "../ItemForm/ItemForm";
 import Item from "../Item/Item";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 
 function ItemList(props) {
-	const items = props.searchedRestaurant;
-	let itemsToDisplay = "Loading...";
-	if (props.searchedRestaurant[0]) {
-		itemsToDisplay = items.map((item) => {
-			return (
-				<div>
-					<p>Item name: {item.items[0].name}</p>
-					<p>Item type: {item.items[0].type}</p>
-					<img src={item.items[0].img} style={{ height: "8em" }} />
-					<hr />
-				</div>
-			);
-		});
-	}
+	// const items = props.searchedRestaurant;
+	// let itemsToDisplay = "Loading...";
+	// if (props.searchedRestaurant[0]) {
+	// 	itemsToDisplay = items.map((item) => {
+	// 		return (
+	// 			<div>
+	// 				<p>Item name: {item.items[0].name}</p>
+	// 				<p>Item type: {item.items[0].type}</p>
+	// 				<img src={item.items[0].img} />
+	// 				<hr />
+	// 			</div>
+	// 		);
+	// 	});
+	// }
 
 	console.log("testing routerprops in ItemList", props.match.params);
 	const id = props.match.params.id;
@@ -55,12 +55,24 @@ function ItemList(props) {
 		fetch(url + "restaurants/")
 			.then((response) => response.json())
 			.then((data) => {
-				console.log("data - items", props.searchedRestaurant);
+				console.log("data - items", data);
 				setNewItemState(props.searchedRestaurant);
 			});
 	};
 
-	// React.useEffect(() => getDogs(), []);
+	React.useEffect(() => getRestaurantItems(), []);
+
+
+	const updateRestaurantList = () => {
+		fetch(url + "restaurants/" + props.match.params.id)
+			.then((response) => response.json())
+			.then((data) => {
+				console.log("data", data);
+				console.log("data.restaurants", data.restaurants)
+				setNewItemState(data.restaurants);
+			});
+			
+	}
 
 	//handleCreate function for creating new items
 	const handleCreate = (newItem) => {
@@ -72,26 +84,32 @@ function ItemList(props) {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(payload),
-		}).then(() => {
+		}).then((response)=> {
 			//   itemId = res.json()
 			//   return itemId
 
 			//   getItems();
-			getRestaurantItems();
-		});
-
-		console.log("payload", payload);
+			  updateRestaurantList()
+			//   props.history.push(`/restaurant/${props.match.params.id}`)
+		  })
+		  console.log("newItemState in updateRestaurantList", newItemState)
+		console.log("payload", payload)
 	};
 
-	// fetch to add item to restaurant
-	// fetch(url + "restaurants/" + props.searchedRestaurant._id + "/addItem/" + newItem._id, {
-	// 	method: "put",
-	// 	headers: {
-	// 		"Content-Type": "application/json",
-	// 	},
-	// 	body: JSON.stringify(newItem),
-	// }).then(() => {
+	
+		// fetch to add item to restaurant
+		// fetch(url + "restaurants/" + props.searchedRestaurant._id + "/addItem/" + newItem._id, {
+		// 	method: "put",
+		// 	headers: {
+		// 		"Content-Type": "application/json",
+		// 	},
+		// 	body: JSON.stringify(newItem),
+		// }).then(() => {
 
+		// 	setResItems(emptyItem);
+		// 	getItems();
+		// });
+	
 	// 	setResItems(emptyItem);
 	// 	getItems();
 	// });
@@ -136,14 +154,33 @@ function ItemList(props) {
 	// // 	setSelectedItem(item);
 	// // };
 
+// Adding the Restuarant Name to top of page 
+	let rName = props.searchedRestaurant
+	let restaurantName = "loading..."
+	if (props.searchedRestaurant[0]) {
+			restaurantName = rName.map((restaurant) => {
+				return (
+					<div>
+						<p>Restaurant Name: {restaurant.name}</p>
+						{/* <p>Zipcode: {restaurant.zipcode}</p>
+						<img src={restaurant.img} /> */}
+				
+					<hr />
+					
+					</div>
+				)
+			})
+	}
+
 	return (
 		<>
 			<h2>This is the ItemList Component</h2>
-			{itemsToDisplay}
-
+			{restaurantName}
+			{/* {itemsToDisplay} */}
+			
+	
 			<Route
-				exact
-				path="/restaurant/:id"
+				exact path="/restaurant/:id/"
 				render={(routerprops) => (
 					<ItemForm
 						{...routerprops}
