@@ -1,5 +1,6 @@
 import React from "react";
 import ItemForm from "../ItemForm/ItemForm";
+import Item from "../Item/Item";
 import { Route, Switch } from "react-router-dom";
 
 function ItemList(props) {
@@ -18,11 +19,17 @@ function ItemList(props) {
 		});
 	}
 
+	console.log("testing routerprops in ItemList", props.match.params);
+	const id = props.match.params.id
+	console.log("testing routerprops in ItemList - exampleId", id);
+
 	const url = "https://aa-palate-backend.herokuapp.com/";
 
 	const [resItems, setResItems] = React.useState([]);
 
-	// const [itemId, setItemId] = React.useState([])
+	const [newItemState, setNewItemState] = React.useState([])
+
+	const [form, setForm] = React.useState(emptyItem);
 
 	//EMPTY ITEM
 	const emptyItem = {
@@ -31,7 +38,6 @@ function ItemList(props) {
 		img: "",
 	};
 
-	const [form, setForm] = React.useState(emptyItem);
 
 	// GET LIST OF ITEMS FUNCTION
 	const getItems = () => {
@@ -42,11 +48,21 @@ function ItemList(props) {
 			});
 	};
 
+	const getRestaurantItems = () => {
+		fetch(url + "restaurants/")
+			.then((response) => response.json())
+			.then((data) => {
+				console.log("data - items", props.searchedRestaurant);
+				setNewItemState(props.searchedRestaurant);
+			});
+	};
+
+
 	// React.useEffect(() => getDogs(), []);
 
 	//handleCreate function for creating new items
 	const handleCreate = (newItem) => {
-		let payload = {newItem, restId: props.match.params._id}
+		let payload = {newItem, restId: props.match.params.id}
 
 		fetch(url + "items", {
 			method: "post",
@@ -57,40 +73,13 @@ function ItemList(props) {
 		}).then(()=> {
 			//   itemId = res.json()
 			//   return itemId
-			  getItems();
-		  })
 		
-		// console.log("new item", newItem);
+			//   getItems();
+			  getRestaurantItems()
+		  })
 
-		// console.log("checking itemId variable", itemId)
-
-			// fetch to add item to restaurant
-		// fetch(url + "restaurants/" + props.searchedRestaurant._id + "/addItem/" + itemId, {
-		// 	method: "put",
-		// 	headers: {
-		// 		"Content-Type": "application/json",
-		// 	},
-		// 	body: JSON.stringify(newItem),
-		// }).then(() => {
-		// 	// don't need the response from the post but will be using the .then to update the list of dogs
-
-			
-		// });
+		console.log("payload", payload)
 	};
-
-	//.then((response) => response.json())
-		//	.then((data) => {
-
-		// let rest = props.searchedRestaurant;
-		// 	console.log("looking for restaurant in itemList", rest);
-		// 	rest.map((r) => {
-		// 			if (newItem.name) {
-		// 				setItemId([r]);
-		// 			} else {
-		// 				console.log("Something didn't work", r.name);
-		// 			}
-		// 		})
-		// 	console.log("itemId", itemId)
 
 		// fetch to add item to restaurant
 		// fetch(url + "restaurants/" + props.searchedRestaurant._id + "/addItem/" + newItem._id, {
@@ -100,7 +89,6 @@ function ItemList(props) {
 		// 	},
 		// 	body: JSON.stringify(newItem),
 		// }).then(() => {
-		// 	// don't need the response from the post but will be using the .then to update the list of dogs
 
 		// 	setResItems(emptyItem);
 		// 	getItems();
@@ -117,7 +105,7 @@ function ItemList(props) {
 			},
 			body: JSON.stringify(newItem),
 		}).then(() => {
-			// don't need the response from the post but will be using the .then to update the list of dogs
+			
 			getItems();
 		});
 	};
@@ -129,24 +117,33 @@ function ItemList(props) {
 		}).then((response) => getItems());
 	};
 
+
+console.log("newItem state", newItemState)
+
+
 	return (
 		<>
 			<h2>This is the ItemList Component</h2>
 			{itemsToDisplay}
-			<Switch>
+			
+		
 			<Route
-				path="/restaurant/:id"
+				exact path="/restaurant/:id"
 				render={(routerprops) => (
 					<ItemForm
 						{...routerprops}
 						handleSubmit={handleCreate}
 						item={form}
-					/>
+					/>	
 				)}
+			
 			/>
+			
+			<Item newItemState={newItemState} />
+		
 
-			<Route
-				path="/restaurant"
+			{/* <Route
+				exact path="/restaurant"
 				render={(routerprops) => (
 					<ItemForm
 						{...routerprops}
@@ -154,8 +151,8 @@ function ItemList(props) {
 						item={form}
 					/>
 				)}
-			/>
-		</Switch>
+			/> */}
+	
 		</>
 	);
 }
