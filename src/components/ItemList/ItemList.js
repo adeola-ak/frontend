@@ -1,23 +1,23 @@
 import React from "react";
 import ItemForm from "../ItemForm/ItemForm";
 import Item from "../Item/Item";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 
 function ItemList(props) {
-	const items = props.searchedRestaurant;
-	let itemsToDisplay = "Loading...";
-	if (props.searchedRestaurant[0]) {
-		itemsToDisplay = items.map((item) => {
-			return (
-				<div>
-					<p>Item name: {item.items[0].name}</p>
-					<p>Item type: {item.items[0].type}</p>
-					<img src={item.items[0].img} />
-					<hr />
-				</div>
-			);
-		});
-	}
+	// const items = props.searchedRestaurant;
+	// let itemsToDisplay = "Loading...";
+	// if (props.searchedRestaurant[0]) {
+	// 	itemsToDisplay = items.map((item) => {
+	// 		return (
+	// 			<div>
+	// 				<p>Item name: {item.items[0].name}</p>
+	// 				<p>Item type: {item.items[0].type}</p>
+	// 				<img src={item.items[0].img} />
+	// 				<hr />
+	// 			</div>
+	// 		);
+	// 	});
+	// }
 
 	console.log("testing routerprops in ItemList", props.match.params);
 	const id = props.match.params.id
@@ -58,8 +58,8 @@ function ItemList(props) {
 			});
 	};
 
+	React.useEffect(() => getRestaurantItems(), []);
 
-	// React.useEffect(() => getDogs(), []);
 
 	//handleCreate function for creating new items
 	const handleCreate = (newItem) => {
@@ -71,7 +71,7 @@ function ItemList(props) {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(payload),
-		}).then(()=> {
+		}).then((response)=> {
 			//   itemId = res.json()
 			//   return itemId
 		
@@ -82,6 +82,7 @@ function ItemList(props) {
 		console.log("payload", payload)
 	};
 
+	
 		// fetch to add item to restaurant
 		// fetch(url + "restaurants/" + props.searchedRestaurant._id + "/addItem/" + newItem._id, {
 		// 	method: "put",
@@ -125,14 +126,33 @@ function ItemList(props) {
 console.log("newItem state", newItemState)
 
 
+// Adding the Restuarant Name to top of page 
+	let rName = props.searchedRestaurant
+	let restaurantName = "loading..."
+	if (props.searchedRestaurant[0]) {
+			restaurantName = rName.map((restaurant) => {
+				return (
+					<div>
+						<p>Restaurant Name: {restaurant.name}</p>
+						{/* <p>Zipcode: {restaurant.zipcode}</p>
+						<img src={restaurant.img} /> */}
+				
+					<hr />
+					
+					</div>
+				)
+			})
+	}
+
 	return (
 		<>
 			<h2>This is the ItemList Component</h2>
-			{itemsToDisplay}
+			{restaurantName}
+			{/* {itemsToDisplay} */}
 			
-		
+	
 			<Route
-				exact path="/restaurant/:id"
+				exact path="/restaurant/:id/"
 				render={(routerprops) => (
 					<ItemForm
 						{...routerprops}
