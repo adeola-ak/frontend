@@ -1,67 +1,68 @@
 import React from "react";
+import { Route, Redirect } from "react-router-dom";
 
 function Item(props) {
-    console.log("props in Item", props.newItemState)
+	console.log("props in Item", props.newItemState);
 
-    // props.newItemState.items.map(item, index) 
-    // {item[index].name}
-   
-	let example = props.newItemState
+	// props.newItemState.items.map(item, index)
+	// {item[index].name}
+
+	let example = props.newItemState;
 	let renderItems = "Loading...";
-	let renderSubArray = ""
+	let renderSubArray = "";
 	if (props.newItemState[0]) {
-        // example = props.newItemState[0]
+		// example = props.newItemState[0]
 		renderItems = example.map((subarray) => {
-				renderSubArray = subarray.items.map((item, index) => {
-					console.log("testing the subarray.items.map", item, index)
-					return (
-						
-						<div>
-							<p>Item name: {item.name}</p>
-							<p>Item type: {item.type}</p>
-							<img src={item.img} />
+			renderSubArray = subarray.items.map((item, index) => {
+				console.log("testing the subarray.items.map", item, index);
+				return (
+					<div>
+						<p>Item name: {item.name}</p>
+						<p>Item type: {item.type}</p>
+						<img src={item.img} style={{ height: "8em" }} />
 
-							<button onClick={() => {
-								props.selectItem(item)        
-								// props.history.push(`/restaurant/${props.match.params.id}`)
-							}}>
-								Edit
-							</button>
+						<button
+							onClick={() => {
+								props.history.push("/items");
+							}}
+						>
+							Edit
+						</button>
 
-							<button onClick={() => {
-								props.deleteItem(item)        
-							}}>
-								Delete
-							</button>
+						<button
+							onClick={() => {
+								props.deleteItem(item);
+								// props.history.push("/items");
+							}}
+						>
+							Delete
+						</button>
 
-							<hr />
-						</div>
-					)
-				
-				})
-				
-				return [renderSubArray]
-					
-				// return <h1>2nd return</h1>
-		})
+						<hr />
+					</div>
+				);
+			});
 
-		let info = example[0].items[0].name
-		console.log("example array", example)
-		console.log("testing", info)
+			return [renderSubArray];
+
+			// return <h1>2nd return</h1>
+		});
+
+		let info = example[0].items[0].name;
+		console.log("example array", example);
+		console.log("testing", info);
 	}
-    return (
-        <>
-        <h1>Item Component</h1>
-            {renderItems}
-         </>   
-    )
-
+	return (
+		<>
+			<h1>Item Component</h1>
+			{renderItems}
+		</>
+	);
 }
 
 export default Item;
 
-
-/// save 
+/// save
 
 // let example = props.newItemState[0]
 // 	let renderItems = "Loading...";
