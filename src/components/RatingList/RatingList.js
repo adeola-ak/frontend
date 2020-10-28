@@ -1,6 +1,12 @@
 import React from 'react';
 import RatingForm from '../RatingForm/RatingForm';
 import { Route, Switch } from 'react-router-dom';
+// import font awesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// solid Star
+import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
+// holy Star
+import { faStar as holyStar } from '@fortawesome/free-regular-svg-icons';
 
 function RatingList(props) {
 	// handles Star Ratings
