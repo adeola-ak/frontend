@@ -29,8 +29,6 @@ function ItemList(props) {
 
 	const [newItemState, setNewItemState] = React.useState([])
 
-	const [form, setForm] = React.useState(emptyItem);
-
 	//EMPTY ITEM
 	const emptyItem = {
 		name: "",
@@ -38,6 +36,9 @@ function ItemList(props) {
 		img: "",
 	};
 
+	const [selectedItem, setSelectedItem] = React.useState(emptyItem);
+
+	const [form, setForm] = React.useState(emptyItem);
 
 	// GET LIST OF ITEMS FUNCTION
 	const getItems = () => {
@@ -117,7 +118,10 @@ function ItemList(props) {
 		}).then((response) => getItems());
 	};
 
-
+	const selectItem = (item) => {
+    	setSelectedItem(item)
+	}
+	
 console.log("newItem state", newItemState)
 
 
@@ -138,8 +142,9 @@ console.log("newItem state", newItemState)
 				)}
 			
 			/>
-			
-			<Item newItemState={newItemState} />
+
+			<Item newItemState={newItemState} selectItem={selectedItem}
+				deleteItem={deleteItem} />
 		
 
 			{/* <Route
