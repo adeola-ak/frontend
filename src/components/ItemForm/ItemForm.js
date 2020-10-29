@@ -1,18 +1,21 @@
 import React from "react";
-// import { Route } from "react-router-dom";
+// import from "react-router-dom";
 
 const ItemForm = (props) => {
 
 	//STATE FOR THE FORM
 	const [formData, setFormData] = React.useState(props.item);
 
+	// const id = props.match.params.id;
 	//FUNCTIONS
 	const handleSubmit = (event) => {
 		event.preventDefault(); // Prevent Form from Refreshing
 		props.handleSubmit(formData); // Submit to Parents desired function
-		props.history.push(`/restaurant/${props.match.params.id}`); //Push back to display page
+		props.history.push(`/restaurant/${props.id}`); //Push back to display page
 		console.log("submit button", event);
 	};
+
+	// SAVE	props.history.push(`/restaurant/${props.match.params.id}`); //Push back to display page
 
 	const handleChange = (event) => {
 		setFormData({ ...formData, [event.target.name]: event.target.value });

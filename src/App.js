@@ -83,7 +83,7 @@ function App() {
 						)}
 					/>
 
-					<Route exact
+					<Route 
 						path="/restaurant/:id"
 						render={(routerprops) => (
 							<ItemList {...routerprops} searchedRestaurant={searchedRestaurant} />

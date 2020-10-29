@@ -116,14 +116,15 @@ function ItemList(props) {
 
 	//handleUpdate function for updating items
 	const handleUpdate = (newItem) => {
-		fetch(url + "items/" + id, {
+		fetch(url + "items/" + newItem._id, {
 			method: "put",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(newItem),
 		}).then(() => {
-			getItems();
+			updateRestaurantList()
+		
 		});
 	};
 
@@ -151,9 +152,9 @@ function ItemList(props) {
 	// 	}).then((response) => getItems());
 	// };
 
-	// // const selectItem = (item) => {
-	// // 	setSelectedItem(item);
-	// // };
+	const selectItem = (item) => {
+		setSelectedItem(item);
+	};
 
 
 // Adding the Restuarant Name to top of page 
@@ -179,35 +180,50 @@ function ItemList(props) {
 			<h2>This is the ItemList Component</h2>
 			{restaurantName}
 			{/* {itemsToDisplay} */}
-			
-	
+			<Link to={props.match.url + "/add"}>
+				<button>Add an Item</button>
+			</Link>
+
+		{/* exact path="/restaurant/:id/" */}
+			<Switch>
 			<Route
-				exact path="/restaurant/:id/"
+				exact path={props.match.url + "/add"}
 				render={(routerprops) => (
 					<ItemForm
 						{...routerprops}
 						handleSubmit={handleCreate}
 						item={form}
+						id={props.match.params.id}
 					/>
 				)}
 			/>
 
-			<Item
-				newItemState={newItemState}
-				selectItem={selectedItem}
-				deleteItem={deleteItem}
+			<Route
+				exact path={props.match.url}
+				render={(routerprops) => (
+					<Item
+						{...routerprops}
+						newItemState={newItemState}
+						selectItem={selectItem}
+						deleteItem={deleteItem}
+					/>
+				)}
 			/>
-
-			{/* <Route
-				exact path="/restaurant"
+		
+			<Route
+				exact path={props.match.url + "/edit"}
 				render={(routerprops) => (
 					<ItemForm
 						{...routerprops}
 						handleSubmit={handleUpdate}
-						item={form}
+						item={selectedItem}
+						id={props.match.params.id}
 					/>
 				)}
-			/> */}
+			/>
+
+			</Switch>
+		
 		</>
 	);
 }

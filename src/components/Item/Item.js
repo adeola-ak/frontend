@@ -21,13 +21,16 @@ function Item(props) {
 						<p>Item type: {item.type}</p>
 						<img src={item.img} style={{ height: "8em" }} />
 
+					
 						<button
 							onClick={() => {
-								props.history.push("/items");
+								props.selectItem(item)  // added
+								props.history.push(`${props.match.url}/edit`);
 							}}
 						>
 							Edit
 						</button>
+					
 
 						<button
 							onClick={() => {
