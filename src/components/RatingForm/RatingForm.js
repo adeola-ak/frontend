@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 // import font awesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // solid Star
-import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 // holy Star
-import { faStar as holyStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar as holyStar } from "@fortawesome/free-regular-svg-icons";
 
 const RatingForm = (props) => {
 	const [formData, setFormData] = React.useState(props.rating);
@@ -42,10 +42,10 @@ const RatingForm = (props) => {
 			return (
 				<div>
 					<FontAwesomeIcon
-						id='1'
+						id="1"
 						onClick={handleClick}
 						icon={holyStar}
-						size='2x'
+						size="2x"
 					/>
 				</div>
 			);
@@ -53,10 +53,10 @@ const RatingForm = (props) => {
 			return (
 				<div>
 					<FontAwesomeIcon
-						id='1'
+						id="1"
 						onClick={handleClick}
 						icon={solidStar}
-						size='2x'
+						size="2x"
 					/>
 				</div>
 			);
@@ -67,10 +67,10 @@ const RatingForm = (props) => {
 			return (
 				<div>
 					<FontAwesomeIcon
-						id='2'
+						id="2"
 						onClick={handleClick}
 						icon={solidStar}
-						size='2x'
+						size="2x"
 					/>
 				</div>
 			);
@@ -78,10 +78,10 @@ const RatingForm = (props) => {
 			return (
 				<div>
 					<FontAwesomeIcon
-						id='2'
+						id="2"
 						onClick={handleClick}
 						icon={holyStar}
-						size='2x'
+						size="2x"
 					/>
 				</div>
 			);
@@ -92,10 +92,10 @@ const RatingForm = (props) => {
 			return (
 				<div>
 					<FontAwesomeIcon
-						id='3'
+						id="3"
 						onClick={handleClick}
 						icon={solidStar}
-						size='2x'
+						size="2x"
 					/>
 				</div>
 			);
@@ -103,10 +103,10 @@ const RatingForm = (props) => {
 			return (
 				<div>
 					<FontAwesomeIcon
-						id='3'
+						id="3"
 						onClick={handleClick}
 						icon={holyStar}
-						size='2x'
+						size="2x"
 					/>
 				</div>
 			);
@@ -117,36 +117,39 @@ const RatingForm = (props) => {
 	const handleSubmit = (event) => {
 		event.preventDefault(); // Prevent Form from Refreshing
 		props.handleSubmit(formData); // Submit to Parents desired function
-		props.history.push('/restaurant'); //Push back to display page
+		props.history.push(`/item/${props.id}`); //Push back to display page
 	};
 
 	const handleChange = (event) => {
 		setFormData({ ...formData, [event.target.name]: event.target.value });
 	};
 	return (
-		<form style={{ width: '200px', margin: '0 auto' }} onSubmit={handleSubmit}>
+		<form
+			style={{ width: "200px", margin: "0 auto" }}
+			onSubmit={handleSubmit}
+		>
 			<input
-				type='text'
-				name='name'
+				type="text"
+				name="name"
 				value={formData.name}
 				onChange={handleChange}
-				placeholder='Enter your name'
+				placeholder="Enter your name"
 			/>
-            <input type='hidden' name='date' value={new Date()} />
+			<input type="hidden" name="date" value={new Date()} />
 			{star1()}
 			{star2()}
 			{star3()}
-			<input type='hidden' name='stars' value={favStar} />
+			<input type="hidden" name="stars" value={favStar} />
 			<input
-				type='text'
-				name='commit'
+				type="text"
+				name="commit"
 				value={formData.type}
 				onChange={handleChange}
-				placeholder='comment on item'
+				placeholder="comment on item"
 			/>
-			<input type='submit' value={props.label} />
+			<input type="submit" value={props.label} />
 		</form>
 	);
 };
 
-export default RatingForm
+export default RatingForm;
