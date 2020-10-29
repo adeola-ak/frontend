@@ -1,70 +1,9 @@
 import React from 'react';
-import Rating from '../Rating/Rating'
+import Rating from '../Rating/Rating';
 import RatingForm from '../RatingForm/RatingForm';
 import { Route, Switch, Link } from 'react-router-dom';
-// import font awesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// solid Star
-import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
-// holy Star
-import { faStar as holyStar } from '@fortawesome/free-regular-svg-icons';
 
 function RatingList(props) {
-	// handles Star Ratings
-	function star1(favStar) {
-		if (favStar === 0) {
-			return (
-				<div>
-					<FontAwesomeIcon id='1' icon={holyStar} size='2x' />
-				</div>
-			);
-		} else {
-			return (
-				<div>
-					<FontAwesomeIcon id='1' icon={solidStar} size='2x' />
-				</div>
-			);
-		}
-	}
-	function star2(favStar) {
-		if (favStar > 1) {
-			return (
-				<div>
-					<FontAwesomeIcon id='2' icon={solidStar} size='2x' />
-				</div>
-			);
-		} else {
-			return (
-				<div>
-					<FontAwesomeIcon id='2' icon={holyStar} size='2x' />
-				</div>
-			);
-		}
-	}
-	function star3(favStar) {
-		if (favStar > 2) {
-			return (
-				<div>
-					<FontAwesomeIcon id='3' icon={solidStar} size='2x' />
-				</div>
-			);
-		} else {
-			return (
-				<div>
-					<FontAwesomeIcon id='3' icon={holyStar} size='2x' />
-				</div>
-			);
-		}
-	}
-	function stars(rating) {
-		return (
-			<>
-				{star1(rating)}
-				{star2(rating)}
-				{star3(rating)}
-			</>
-		);
-	}
 	// will need to check pathing
 	const id = props.match.params.id;
 
@@ -110,7 +49,7 @@ function RatingList(props) {
 			.then((response) => response.json())
 			.then((data) => {
 				setSearchedItem(data.items);
-				setNewRatingState(data.items.ratings)
+				setNewRatingState(data.items.ratings);
 			});
 	};
 
@@ -118,7 +57,6 @@ function RatingList(props) {
 	const getItemRating = () => {
 		getRatings();
 	};
-	
 
 	// Renders first time on page
 	React.useEffect(() => getItemRating(), []);
@@ -136,7 +74,7 @@ function RatingList(props) {
 	const handleCreate = (newRating) => {
 		let payload = { newRating, restId: id };
 
-		fetch(url + 'items', {
+		fetch(url + 'ratings/', {
 			method: 'post',
 			headers: {
 				'Content-Type': 'application/json',
@@ -163,8 +101,7 @@ function RatingList(props) {
 	const deleteRating = (rating) => {
 		fetch(url + ':id/' + rating._id, {
 			method: 'delete',
-		});
-		return updateRatingList();
+		}).then(() => {updateRatingList()});
 	};
 
 	// adds Item name to top of page
@@ -180,35 +117,51 @@ function RatingList(props) {
 	// 		);
 	// 	});
 	// }
-	
+
 	return (
 		<>
 			{/* <h2>{itemName}</h2> */}
 			{/* {ratingToDisplay} */}
-			<Route
-				path='/rating/:id'
-				render={(routerprops) => (
-					<RatingForm
-						{...routerprops}
-						handleSubmit={handleCreate}
-						rating={form}
-					/>
-				)}
-			/>
-			<Rating
-				newRatingState={newRatingState}
-				deleteRating={deleteRating}
-			/>
-			{/* <Route
-					path='/rating/:id'
+			<Link to={props.match.url + '/add'}>
+				<button>Add an Rating</button>
+			</Link>
+
+			<Switch>
+				<Route
+					exact
+					path={props.match.url + '/add'}
+					render={(routerprops) => (
+						<RatingForm
+							{...routerprops}
+							handleSubmit={handleCreate}
+							rating={form}
+							id={props.match.params.id}
+						/>
+					)}
+				/>
+				<Route
+					exact
+					path={props.match.url}
+					render={(routerprops) => (
+						<Rating
+							newRatingState={newRatingState}
+							deleteRating={deleteRating}
+						/>
+					)}
+				/>
+				<Route
+					exact
+					path={props.match.url + '/rating/:id' + '/edit'}
 					render={(routerprops) => (
 						<RatingForm
 							{...routerprops}
 							handleSubmit={handleUpdate}
 							rating={form}
+							id={props.match.params.id}
 						/>
 					)}
-				/> */}
+				/>
+			</Switch>
 		</>
 	);
 }
