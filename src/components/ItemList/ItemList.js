@@ -62,17 +62,15 @@ function ItemList(props) {
 
 	React.useEffect(() => getRestaurantItems(), []);
 
-
 	const updateRestaurantList = () => {
 		fetch(url + "restaurants/" + props.match.params.id)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log("data", data);
-				console.log("data.restaurants", data.restaurants)
+				console.log("data.restaurants", data.restaurants);
 				setNewItemState(data.restaurants);
 			});
-			
-	}
+	};
 
 	//handleCreate function for creating new items
 	const handleCreate = (newItem) => {
@@ -84,32 +82,31 @@ function ItemList(props) {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(payload),
-		}).then((response)=> {
+		}).then((response) => {
 			//   itemId = res.json()
 			//   return itemId
 
 			//   getItems();
-			  updateRestaurantList()
+			updateRestaurantList();
 			//   props.history.push(`/restaurant/${props.match.params.id}`)
-		  })
-		  console.log("newItemState in updateRestaurantList", newItemState)
-		console.log("payload", payload)
+		});
+		console.log("newItemState in updateRestaurantList", newItemState);
+		console.log("payload", payload);
 	};
 
-	
-		// fetch to add item to restaurant
-		// fetch(url + "restaurants/" + props.searchedRestaurant._id + "/addItem/" + newItem._id, {
-		// 	method: "put",
-		// 	headers: {
-		// 		"Content-Type": "application/json",
-		// 	},
-		// 	body: JSON.stringify(newItem),
-		// }).then(() => {
+	// fetch to add item to restaurant
+	// fetch(url + "restaurants/" + props.searchedRestaurant._id + "/addItem/" + newItem._id, {
+	// 	method: "put",
+	// 	headers: {
+	// 		"Content-Type": "application/json",
+	// 	},
+	// 	body: JSON.stringify(newItem),
+	// }).then(() => {
 
-		// 	setResItems(emptyItem);
-		// 	getItems();
-		// });
-	
+	// 	setResItems(emptyItem);
+	// 	getItems();
+	// });
+
 	// 	setResItems(emptyItem);
 	// 	getItems();
 	// });
@@ -128,48 +125,43 @@ function ItemList(props) {
 	};
 
 	// deleteItemto delete an item
-	const deleteItem = (resItems) => {
-		fetch(url + "items/" + resItems._id, {
-			method: "delete",
-		}).then(() => setIsDeleted(true));
-	};
-
-	if (!resItems) {
-		return <p>Loading...</p>;
-	}
-
-	if (isDeleted) {
-		console.log("ITEM DELETED");
-		return getItems();
-	}
-
-	// // deleteItemto delete an item
 	// const deleteItem = (resItems) => {
 	// 	fetch(url + "items/" + resItems._id, {
 	// 		method: "delete",
-	// 	}).then((response) => getItems());
+	// 	}).then(() => setIsDeleted(true));
 	// };
 
-	// // const selectItem = (item) => {
-	// // 	setSelectedItem(item);
-	// // };
+	// if (!resItems) {
+	// 	return <p>Loading...</p>;
+	// }
 
-// Adding the Restuarant Name to top of page 
-	let rName = props.searchedRestaurant
-	let restaurantName = "loading..."
+	// if (isDeleted) {
+	// 	console.log("ITEM DELETED");
+	// 	return getItems();
+	// }
+
+	const deleteItem = (resItems) => {
+		fetch(url + "items/" + resItems._id, {
+			method: "delete",
+		});
+		return getItems();
+	};
+
+	// Adding the Restuarant Name to top of page
+	let rName = props.searchedRestaurant;
+	let restaurantName = "loading...";
 	if (props.searchedRestaurant[0]) {
-			restaurantName = rName.map((restaurant) => {
-				return (
-					<div>
-						<p>Restaurant Name: {restaurant.name}</p>
-						{/* <p>Zipcode: {restaurant.zipcode}</p>
+		restaurantName = rName.map((restaurant) => {
+			return (
+				<div>
+					<p>Restaurant Name: {restaurant.name}</p>
+					{/* <p>Zipcode: {restaurant.zipcode}</p>
 						<img src={restaurant.img} /> */}
-				
+
 					<hr />
-					
-					</div>
-				)
-			})
+				</div>
+			);
+		});
 	}
 
 	return (
@@ -177,10 +169,10 @@ function ItemList(props) {
 			<h2>This is the ItemList Component</h2>
 			{restaurantName}
 			{/* {itemsToDisplay} */}
-			
-	
+
 			<Route
-				exact path="/restaurant/:id/"
+				exact
+				path="/restaurant/:id/"
 				render={(routerprops) => (
 					<ItemForm
 						{...routerprops}
