@@ -132,10 +132,12 @@ function ItemList(props) {
 	const deleteItem = (resItems) => {
 		fetch(url + "items/" + resItems._id, {
 			method: "delete",
-		})
-		return updateRestaurantList();
+		}).then(() => {
+			updateRestaurantList()
+		});
 	};
 
+	//return updateRestaurantList();
 	if (!resItems) {
 		return <p>Loading...</p>;
 	}
