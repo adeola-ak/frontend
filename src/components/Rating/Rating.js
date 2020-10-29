@@ -3,7 +3,7 @@ import React from 'react';
 function Rating(props) {
 	// following Item.js
 	console.log('Jesse Check' + props.newRatingState);
-	let example = [props.newRatingState];
+	let example = props.newRatingState;
 	let renderRatings = 'Loading...';
 	// let renderSubArray = '';
 	if (props.newRatingState) {

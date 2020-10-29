@@ -110,13 +110,13 @@ function RatingList(props) {
 			.then((response) => response.json())
 			.then((data) => {
 				setSearchedItem(data.items);
+				setNewRatingState(data.items.ratings)
 			});
 	};
 
 	// Get function to render
 	const getItemRating = () => {
 		getRatings();
-		setNewRatingState(searchedItem);
 	};
 	
 
@@ -169,7 +169,7 @@ function RatingList(props) {
 
 	// adds Item name to top of page
 	// let iName = searchedItem;
-	let itemName = searchedItem.name;
+	// let itemName = searchedItem.name;
 	// if (searchedItem) {
 	// 	itemName = iName.map((item) => {
 	// 		return (
@@ -183,7 +183,7 @@ function RatingList(props) {
 	
 	return (
 		<>
-			<h2>{itemName}</h2>
+			{/* <h2>{itemName}</h2> */}
 			{/* {ratingToDisplay} */}
 			<Route
 				path='/rating/:id'
