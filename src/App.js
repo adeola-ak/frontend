@@ -7,6 +7,7 @@ import About from "./components/About/About";
 import Nav from "./shared/Nav";
 import Restaurant from "./components/Restaurant/Restaurant";
 import ItemList from "./components/ItemList/ItemList";
+import RatingList from './components/RatingList/RatingList'
 
 function App() {
 	// URL VARIABLE
@@ -88,6 +89,13 @@ function App() {
 							<ItemList {...routerprops} searchedRestaurant={searchedRestaurant} />
 					)}
 					/>
+
+					<Route exact
+						path='/item/:id'
+						render={(routerprops) => (
+							<RatingList {...routerprops} />
+						)}
+						/>
 
 					<Route path="/About">
 						<About />

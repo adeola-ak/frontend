@@ -63,7 +63,6 @@ function ItemList(props) {
 
 	React.useEffect(() => getRestaurantItems(), []);
 
-
 	const updateRestaurantList = () => {
 		fetch(url + "restaurants/" + props.match.params.id)
 			.then((response) => response.json())

@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Link, Redirect } from "react-router-dom";
+import { Route, Redirect, Link } from "react-router-dom";
 
 function Item(props) {
 	console.log("props in Item", props.newItemState);
@@ -40,6 +40,10 @@ function Item(props) {
 						>
 							Delete
 						</button>
+
+						<Link to={`/item/${item._id}`}>
+							<button>List of Ratings</button>
+						</Link>
 
 						<hr />
 					</div>
