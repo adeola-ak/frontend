@@ -4,7 +4,7 @@ import React from 'react';
 // import css
 import './About.css'
 import leahPhoto from "./Leah-img.jpg"
-import jessePhoto from "./Jesse-Rouse-img.jpg"
+import jessePhoto from "./Jesse-img.jpg"
 
 function About() {
 	
