@@ -99,7 +99,7 @@ function RatingList(props) {
 	};
 
 	const deleteRating = (rating) => {
-		fetch(url + ':id/' + rating._id, {
+		fetch(url + 'ratings/' + rating._id, {
 			method: 'delete',
 		}).then(() => {updateRatingList()});
 	};
