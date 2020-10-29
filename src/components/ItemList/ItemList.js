@@ -52,12 +52,13 @@ function ItemList(props) {
 	};
 
 	const getRestaurantItems = () => {
-		fetch(url + "restaurants/")
-			.then((response) => response.json())
-			.then((data) => {
-				console.log("data - items", data);
-				setNewItemState(props.searchedRestaurant);
-			});
+		// fetch(url + "restaurants/")
+		// 	.then((response) => response.json())
+		// 	.then((data) => {
+		// 		console.log("data - items", data);
+		// 		setNewItemState(props.searchedRestaurant);
+		// 	});
+		setNewItemState(props.searchedRestaurant)
 	};
 
 	React.useEffect(() => getRestaurantItems(), []);
@@ -67,8 +68,13 @@ function ItemList(props) {
 			.then((response) => response.json())
 			.then((data) => {
 				console.log("data", data);
+<<<<<<< HEAD
 				console.log("data.restaurants", data.restaurants);
 				setNewItemState(data.restaurants);
+=======
+				console.log("data.restaurants", data.restaurants)
+				setNewItemState([data.restaurants]);
+>>>>>>> dbe6a2d9e3efbd56ca4302ee6c721bfc718489af
 			});
 	};
 
@@ -82,7 +88,11 @@ function ItemList(props) {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(payload),
+<<<<<<< HEAD
 		}).then((response) => {
+=======
+		}).then(()=> {
+>>>>>>> dbe6a2d9e3efbd56ca4302ee6c721bfc718489af
 			//   itemId = res.json()
 			//   return itemId
 
@@ -113,24 +123,46 @@ function ItemList(props) {
 
 	//handleUpdate function for updating items
 	const handleUpdate = (newItem) => {
-		fetch(url + "items/" + id, {
+		fetch(url + "items/" + newItem._id, {
 			method: "put",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(newItem),
 		}).then(() => {
-			getItems();
+			updateRestaurantList()
+		
 		});
 	};
 
 	// deleteItemto delete an item
+<<<<<<< HEAD
+=======
+	const deleteItem = (resItems) => {
+		fetch(url + "items/" + resItems._id, {
+			method: "delete",
+		})
+		return updateRestaurantList();
+	};
+
+	if (!resItems) {
+		return <p>Loading...</p>;
+	}
+
+	// if (isDeleted) {
+	// 	console.log("ITEM DELETED");
+	// 	return getItems();
+	// }
+
+	// // deleteItemto delete an item
+>>>>>>> dbe6a2d9e3efbd56ca4302ee6c721bfc718489af
 	// const deleteItem = (resItems) => {
 	// 	fetch(url + "items/" + resItems._id, {
 	// 		method: "delete",
 	// 	}).then(() => setIsDeleted(true));
 	// };
 
+<<<<<<< HEAD
 	// if (!resItems) {
 	// 	return <p>Loading...</p>;
 	// }
@@ -146,6 +178,12 @@ function ItemList(props) {
 		});
 		return getItems();
 	};
+=======
+	const selectItem = (item) => {
+		setSelectedItem(item);
+	};
+
+>>>>>>> dbe6a2d9e3efbd56ca4302ee6c721bfc718489af
 
 	// Adding the Restuarant Name to top of page
 	let rName = props.searchedRestaurant;
@@ -169,35 +207,57 @@ function ItemList(props) {
 			<h2>This is the ItemList Component</h2>
 			{restaurantName}
 			{/* {itemsToDisplay} */}
+<<<<<<< HEAD
 
 			<Route
 				exact
 				path="/restaurant/:id/"
+=======
+			<Link to={props.match.url + "/add"}>
+				<button>Add an Item</button>
+			</Link>
+
+		{/* exact path="/restaurant/:id/" */}
+			<Switch>
+			<Route
+				exact path={props.match.url + "/add"}
+>>>>>>> dbe6a2d9e3efbd56ca4302ee6c721bfc718489af
 				render={(routerprops) => (
 					<ItemForm
 						{...routerprops}
 						handleSubmit={handleCreate}
 						item={form}
+						id={props.match.params.id}
 					/>
 				)}
 			/>
 
-			<Item
-				newItemState={newItemState}
-				selectItem={selectedItem}
-				deleteItem={deleteItem}
+			<Route
+				exact path={props.match.url}
+				render={(routerprops) => (
+					<Item
+						{...routerprops}
+						newItemState={newItemState}
+						selectItem={selectItem}
+						deleteItem={deleteItem}
+					/>
+				)}
 			/>
-
-			{/* <Route
-				exact path="/restaurant"
+		
+			<Route
+				exact path={props.match.url + "/edit"}
 				render={(routerprops) => (
 					<ItemForm
 						{...routerprops}
 						handleSubmit={handleUpdate}
-						item={form}
+						item={selectedItem}
+						id={props.match.params.id}
 					/>
 				)}
-			/> */}
+			/>
+
+			</Switch>
+		
 		</>
 	);
 }
