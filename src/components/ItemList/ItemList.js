@@ -63,7 +63,6 @@ function ItemList(props) {
 
 	React.useEffect(() => getRestaurantItems(), []);
 
-
 	const updateRestaurantList = () => {
 		fetch(url + "restaurants/" + props.match.params.id)
 			.then((response) => response.json())
@@ -197,7 +196,6 @@ function ItemList(props) {
 				newItemState={newItemState}
 				selectItem={selectedItem}
 				deleteItem={deleteItem}
-				setSearchedItem={props.setSearchedItem}
 			/>
 
 			{/* <Route

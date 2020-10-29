@@ -2,12 +2,13 @@ import React from 'react';
 
 function Rating(props) {
 	// following Item.js
-	let example = props.newRatingState;
+	console.log('Jesse Check' + props.newRatingState);
+	let example = [props.newRatingState];
 	let renderRatings = 'Loading...';
-	let renderSubArray = '';
-	if (props.newRatingState[0]) {
-		renderRatings = example.map((subarray) => {
-			renderSubArray = subarray.ratings.map((rating, index) => {
+	// let renderSubArray = '';
+	if (props.newRatingState) {
+		renderRatings = example.map((rating) => {
+			// renderSubArray = subarray.ratings.map((rating, index) => {
 				return (
 					<div>
 						<p>Name: {rating.name}</p>
@@ -30,9 +31,10 @@ function Rating(props) {
 						</button>
 					</div>
 				);
-			});
-			return [renderSubArray];
+			// });
+			// return [renderSubArray];
 		});
+		
 	}
 	return (
 		<>

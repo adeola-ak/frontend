@@ -19,9 +19,6 @@ function App() {
 	// State for restaurants searched through Search bar
 	const [searchedRestaurant, setSearchedRestaurant] = useState([]);
 
-	// State for item selected for rating view
-	const [searchedItem, setSearchedItem] = useState([])
-
 	// API Call to fetch Restaurants (not currently doing anything)
 	const getRestaurants = () => {
 		fetch(url + "restaurants/")
@@ -89,14 +86,14 @@ function App() {
 					<Route exact
 						path="/restaurant/:id"
 						render={(routerprops) => (
-							<ItemList {...routerprops} searchedRestaurant={searchedRestaurant} setSearchedItem={setSearchedItem}/>
+							<ItemList {...routerprops} searchedRestaurant={searchedRestaurant} />
 					)}
 					/>
 
 					<Route exact
 						path='/item/:id'
 						render={(routerprops) => (
-							<RatingList {...routerprops} searchedItem={searchedItem} />
+							<RatingList {...routerprops} />
 						)}
 						/>
 
