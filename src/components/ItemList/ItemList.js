@@ -52,12 +52,13 @@ function ItemList(props) {
 	};
 
 	const getRestaurantItems = () => {
-		fetch(url + "restaurants/")
-			.then((response) => response.json())
-			.then((data) => {
-				console.log("data - items", data);
-				setNewItemState(props.searchedRestaurant);
-			});
+		// fetch(url + "restaurants/")
+		// 	.then((response) => response.json())
+		// 	.then((data) => {
+		// 		console.log("data - items", data);
+		// 		setNewItemState(props.searchedRestaurant);
+		// 	});
+		setNewItemState(props.searchedRestaurant)
 	};
 
 	React.useEffect(() => getRestaurantItems(), []);
@@ -69,7 +70,7 @@ function ItemList(props) {
 			.then((data) => {
 				console.log("data", data);
 				console.log("data.restaurants", data.restaurants)
-				setNewItemState(data.restaurants);
+				setNewItemState([data.restaurants]);
 			});
 			
 	}
@@ -84,7 +85,7 @@ function ItemList(props) {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(payload),
-		}).then((response)=> {
+		}).then(()=> {
 			//   itemId = res.json()
 			//   return itemId
 
@@ -131,17 +132,18 @@ function ItemList(props) {
 	const deleteItem = (resItems) => {
 		fetch(url + "items/" + resItems._id, {
 			method: "delete",
-		}).then(() => setIsDeleted(true));
+		})
+		return updateRestaurantList();
 	};
 
 	if (!resItems) {
 		return <p>Loading...</p>;
 	}
 
-	if (isDeleted) {
-		console.log("ITEM DELETED");
-		return getItems();
-	}
+	// if (isDeleted) {
+	// 	console.log("ITEM DELETED");
+	// 	return getItems();
+	// }
 
 	// // deleteItemto delete an item
 	// const deleteItem = (resItems) => {
@@ -153,6 +155,7 @@ function ItemList(props) {
 	// // const selectItem = (item) => {
 	// // 	setSelectedItem(item);
 	// // };
+
 
 // Adding the Restuarant Name to top of page 
 	let rName = props.searchedRestaurant
