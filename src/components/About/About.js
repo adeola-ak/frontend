@@ -11,7 +11,7 @@ function About() {
 	return (
 		<form>
 			<h2>Team</h2>
-				<p>We are current students in General Assembly’s full time Software Engineering Immersive program</p>
+				<p>We are current students in General Assembly’s full time Software Engineering Immersive program. Palate is our Unit 3 Project.</p>
 
 			<p>Adeola</p>
 				<img src="" alt="Adeola bio photo" className="team"/>
@@ -19,7 +19,7 @@ function About() {
 
 			<p>Leah</p>
 				<img src={leahPhoto} alt="Leah bio photo" className="team"/>
-				<p className="bio-text">Leah Haake is a current student in General Assembly’s full time Software Engineering Immersive program. For the Unit 3 group project, Leah worked on the front-end for the full stack application, Palate. Leah is excited to be learning full stack web development and to continue to build on her skills. Leah lives in Maine and enjoys spending time outdoors and taking her dog Winston on adventures.</p>
+				<p className="bio-text">Leah Haake is a web developer excited to be learning full stack web development and to continue to build on her skills. For the Unit 3 group project, Leah worked on the front-end implementing CRUD functionality for the full stack application. Leah lives in Maine and enjoys spending time outdoors.</p>
 
 			<p>Jesse</p>
 				<img src={jessePhoto} alt="Jesse bio photo" className="team"/>
