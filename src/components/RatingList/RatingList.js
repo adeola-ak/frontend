@@ -1,7 +1,7 @@
 import React from 'react';
 import Rating from '../Rating/Rating'
 import RatingForm from '../RatingForm/RatingForm';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 // import font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // solid Star
@@ -17,7 +17,6 @@ function RatingList(props) {
 				<div>
 					<FontAwesomeIcon
 						id='1'
-						onClick={handleClick}
 						icon={holyStar}
 						size='2x'
 					/>
@@ -28,7 +27,6 @@ function RatingList(props) {
 				<div>
 					<FontAwesomeIcon
 						id='1'
-						onClick={handleClick}
 						icon={solidStar}
 						size='2x'
 					/>
@@ -42,7 +40,6 @@ function RatingList(props) {
 				<div>
 					<FontAwesomeIcon
 						id='2'
-						onClick={handleClick}
 						icon={solidStar}
 						size='2x'
 					/>
@@ -53,7 +50,6 @@ function RatingList(props) {
 				<div>
 					<FontAwesomeIcon
 						id='2'
-						onClick={handleClick}
 						icon={holyStar}
 						size='2x'
 					/>
@@ -67,7 +63,6 @@ function RatingList(props) {
 				<div>
 					<FontAwesomeIcon
 						id='3'
-						onClick={handleClick}
 						icon={solidStar}
 						size='2x'
 					/>
@@ -78,7 +73,6 @@ function RatingList(props) {
 				<div>
 					<FontAwesomeIcon
 						id='3'
-						onClick={handleClick}
 						icon={holyStar}
 						size='2x'
 					/>
@@ -111,7 +105,7 @@ function RatingList(props) {
 
 	const ratings = props.searchedItem;
 
-	const [selectedRating, setSelectedRating] = React.useState(emptyItem);
+	const [selectedRating, setSelectedRating] = React.useState(emptyRating);
 
 	const [form, setForm] = React.useState(emptyRating);
 
@@ -120,12 +114,14 @@ function RatingList(props) {
 	let ratingToDisplay = 'Loading...';
 	if (props.searchedItem[0]) {
 		ratingToDisplay = ratings.map((rating) => {
+			return (
 			<div>
 				<p>Name: {rating.ratings[0].name}</p>
 				<p>Date: {rating.ratings[0].date}</p>
 				<p>Rating: {stars(rating.ratings[0].stars)}</p>
 				<p>Comment: {rating.ratings[0].comment}</p>
-			</div>;
+			</div>
+			)
 		});
 	}
 

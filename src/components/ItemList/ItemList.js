@@ -197,6 +197,7 @@ function ItemList(props) {
 				newItemState={newItemState}
 				selectItem={selectedItem}
 				deleteItem={deleteItem}
+				setSearchedItem={props.setSearchedItem}
 			/>
 
 			{/* <Route

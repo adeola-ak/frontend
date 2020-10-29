@@ -10,7 +10,7 @@ const RatingForm = (props) => {
 	const [formData, setFormData] = React.useState(props.rating);
 
 	let num = 0;
-	const [favStar, setFavStar] = useState(0);
+	const [favStar, setFavStar] = React.useState(0);
 	// handles onClick for Rating
 	function handleClick(event) {
 		console.log(event.target.id);

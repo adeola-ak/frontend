@@ -7,6 +7,7 @@ import About from "./components/About/About";
 import Nav from "./shared/Nav";
 import Restaurant from "./components/Restaurant/Restaurant";
 import ItemList from "./components/ItemList/ItemList";
+import RatingList from './components/RatingList/RatingList'
 
 function App() {
 	// URL VARIABLE
@@ -17,6 +18,9 @@ function App() {
 
 	// State for restaurants searched through Search bar
 	const [searchedRestaurant, setSearchedRestaurant] = useState([]);
+
+	// State for item selected for rating view
+	const [searchedItem, setSearchedItem] = useState([])
 
 	// API Call to fetch Restaurants (not currently doing anything)
 	const getRestaurants = () => {
@@ -85,9 +89,16 @@ function App() {
 					<Route exact
 						path="/restaurant/:id"
 						render={(routerprops) => (
-							<ItemList {...routerprops} searchedRestaurant={searchedRestaurant} />
+							<ItemList {...routerprops} searchedRestaurant={searchedRestaurant} setSearchedItem={setSearchedItem}/>
 					)}
 					/>
+
+					<Route exact
+						path='/item/:id'
+						render={(routerprops) => (
+							<RatingList {...routerprops} searchedItem={searchedItem} />
+						)}
+						/>
 
 					<Route path="/About">
 						<About />
