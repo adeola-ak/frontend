@@ -90,7 +90,7 @@ function App() {
 					)}
 					/>
 
-					<Route exact
+					<Route 
 						path='/item/:id'
 						render={(routerprops) => (
 							<RatingList {...routerprops} />

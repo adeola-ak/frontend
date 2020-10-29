@@ -1,10 +1,9 @@
 import React from 'react';
-import Rating from '../Rating/Rating'
+import Rating from '../Rating/Rating';
 import RatingForm from '../RatingForm/RatingForm';
 import { Route, Switch, Link } from 'react-router-dom';
 
 function RatingList(props) {
-	
 	// will need to check pathing
 	const id = props.match.params.id;
 
@@ -50,7 +49,7 @@ function RatingList(props) {
 			.then((response) => response.json())
 			.then((data) => {
 				setSearchedItem(data.items);
-				setNewRatingState(data.items.ratings)
+				setNewRatingState(data.items.ratings);
 			});
 	};
 
@@ -58,7 +57,6 @@ function RatingList(props) {
 	const getItemRating = () => {
 		getRatings();
 	};
-	
 
 	// Renders first time on page
 	React.useEffect(() => getItemRating(), []);
@@ -76,7 +74,7 @@ function RatingList(props) {
 	const handleCreate = (newRating) => {
 		let payload = { newRating, restId: id };
 
-		fetch(url + 'items', {
+		fetch(url + 'ratings/', {
 			method: 'post',
 			headers: {
 				'Content-Type': 'application/json',
@@ -103,8 +101,7 @@ function RatingList(props) {
 	const deleteRating = (rating) => {
 		fetch(url + ':id/' + rating._id, {
 			method: 'delete',
-		});
-		return updateRatingList();
+		}).then(() => {updateRatingList()});
 	};
 
 	// adds Item name to top of page
@@ -120,35 +117,51 @@ function RatingList(props) {
 	// 		);
 	// 	});
 	// }
-	
+
 	return (
 		<>
 			{/* <h2>{itemName}</h2> */}
 			{/* {ratingToDisplay} */}
-			<Route
-				path='/rating/:id'
-				render={(routerprops) => (
-					<RatingForm
-						{...routerprops}
-						handleSubmit={handleCreate}
-						rating={form}
-					/>
-				)}
-			/>
-			<Rating
-				newRatingState={newRatingState}
-				deleteRating={deleteRating}
-			/>
-			{/* <Route
-					path='/rating/:id'
+			<Link to={props.match.url + '/add'}>
+				<button>Add an Rating</button>
+			</Link>
+
+			<Switch>
+				<Route
+					exact
+					path={props.match.url + '/add'}
+					render={(routerprops) => (
+						<RatingForm
+							{...routerprops}
+							handleSubmit={handleCreate}
+							rating={form}
+							id={props.match.params.id}
+						/>
+					)}
+				/>
+				<Route
+					exact
+					path={props.match.url}
+					render={(routerprops) => (
+						<Rating
+							newRatingState={newRatingState}
+							deleteRating={deleteRating}
+						/>
+					)}
+				/>
+				<Route
+					exact
+					path={props.match.url + '/rating/:id' + '/edit'}
 					render={(routerprops) => (
 						<RatingForm
 							{...routerprops}
 							handleSubmit={handleUpdate}
 							rating={form}
+							id={props.match.params.id}
 						/>
 					)}
-				/> */}
+				/>
+			</Switch>
 		</>
 	);
 }

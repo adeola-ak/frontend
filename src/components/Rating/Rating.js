@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
 // holy Star
 import { faStar as holyStar } from '@fortawesome/free-regular-svg-icons';
-
+import { Route, Redirect, Link } from 'react-router-dom';
 import './Rating.css'
 
 function Rating(props) {
@@ -65,7 +65,6 @@ function Rating(props) {
 		);
 	}
 	// following Item.js
-	console.log('Jesse Check' + props.newRatingState);
 	let example = props.newRatingState;
 	let renderRatings = 'Loading...';
 	// let renderSubArray = '';
@@ -81,7 +80,7 @@ function Rating(props) {
 
 					<button
 						onClick={() => {
-							props.history.push('/ratings');
+							props.history.push(`${props.match.url}/edit`);
 						}}>
 						Edit
 					</button>
