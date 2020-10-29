@@ -63,11 +63,7 @@ function RatingList(props) {
 
 	// updates List after change
 	const updateRatingList = () => {
-		fetch(url + 'ratings/' + id)
-			.then((response) => response.json())
-			.then((data) => {
-				setNewRatingState(data.ratings);
-			});
+		getItemRating()
 	};
 
 	// Creates a rating
