@@ -10,10 +10,10 @@ const RatingForm = (props) => {
 	const [formData, setFormData] = React.useState(props.rating);
 
 	let num = 0;
-	const [favStar, setFavStar] = React.useState(0);
+	const [favStar, setFavStar] = React.useState(props.rating.stars);
+
 	// handles onClick for Rating
 	function handleClick(event) {
-		console.log(event.target.id);
 		num = parseInt(event.target.id);
 		if (num === 1) {
 			if (num === favStar) {
@@ -34,7 +34,12 @@ const RatingForm = (props) => {
 				setFavStar(3);
 			}
 		}
+		return setFormData({ ...formData, stars: favStar });
 	}
+	// makes the favStar go into effect
+	React.useEffect(() => {
+		setFormData({ ...formData, stars: favStar });
+	}, [favStar])
 
 	// handles Star Ratings
 	function star1() {
@@ -45,7 +50,7 @@ const RatingForm = (props) => {
 						id='1'
 						onClick={handleClick}
 						icon={holyStar}
-						size='2x'
+						size='1x'
 					/>
 				</div>
 			);
@@ -56,7 +61,7 @@ const RatingForm = (props) => {
 						id='1'
 						onClick={handleClick}
 						icon={solidStar}
-						size='2x'
+						size='1x'
 					/>
 				</div>
 			);
@@ -70,7 +75,7 @@ const RatingForm = (props) => {
 						id='2'
 						onClick={handleClick}
 						icon={solidStar}
-						size='2x'
+						size='1x'
 					/>
 				</div>
 			);
@@ -81,7 +86,7 @@ const RatingForm = (props) => {
 						id='2'
 						onClick={handleClick}
 						icon={holyStar}
-						size='2x'
+						size='1x'
 					/>
 				</div>
 			);
@@ -95,7 +100,7 @@ const RatingForm = (props) => {
 						id='3'
 						onClick={handleClick}
 						icon={solidStar}
-						size='2x'
+						size='1x'
 					/>
 				</div>
 			);
@@ -106,7 +111,7 @@ const RatingForm = (props) => {
 						id='3'
 						onClick={handleClick}
 						icon={holyStar}
-						size='2x'
+						size='1x'
 					/>
 				</div>
 			);
@@ -123,6 +128,15 @@ const RatingForm = (props) => {
 	const handleChange = (event) => {
 		setFormData({ ...formData, [event.target.name]: event.target.value });
 	};
+	function stars(rating) {
+		return (
+			<>
+				{star1(rating)}
+				{star2(rating)}
+				{star3(rating)}
+			</>
+		);
+	}
 	return (
 		<form style={{ width: '200px', margin: '0 auto' }} onSubmit={handleSubmit}>
 			<input
@@ -132,11 +146,12 @@ const RatingForm = (props) => {
 				onChange={handleChange}
 				placeholder='Enter your name'
 			/>
-			{/* <input type='hidden' name='date' value={new Date()} />
-			{star1()}
-			{star2()}
-			{star3()}
-			<input type='hidden' name='stars' value={favStar} /> */}
+			<div className='starRating'>Stars: {stars(favStar)}</div>
+			{/* <input
+				type='hidden'
+				name='stars'
+				value={favStar}
+			/> */}
 			<input
 				type='date'
 				name='date'
@@ -144,13 +159,13 @@ const RatingForm = (props) => {
 				onChange={handleChange}
 				placeholder='date'
 			/>
-			<input
+			{/* <input
 				type='number'
 				name='stars'
 				value={formData.stars}
 				onChange={handleChange}
 				placeholder='stars'
-			/>
+			/> */}
 			<input
 				type='text'
 				name='comment'
