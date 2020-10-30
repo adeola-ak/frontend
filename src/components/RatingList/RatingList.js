@@ -63,11 +63,7 @@ function RatingList(props) {
 
 	// updates List after change
 	const updateRatingList = () => {
-		fetch(url + 'ratings/' + id)
-			.then((response) => response.json())
-			.then((data) => {
-				setNewRatingState(data.ratings);
-			});
+		getItemRating()
 	};
 
 	// Creates a rating
@@ -99,9 +95,13 @@ function RatingList(props) {
 	};
 
 	const deleteRating = (rating) => {
-		fetch(url + ':id/' + rating._id, {
+		fetch(url + 'ratings/' + rating._id, {
 			method: 'delete',
 		}).then(() => {updateRatingList()});
+	};
+	
+	const selectRating = (rating) => {
+		setSelectedRating(rating);
 	};
 
 	// adds Item name to top of page
@@ -123,7 +123,7 @@ function RatingList(props) {
 			{/* <h2>{itemName}</h2> */}
 			{/* {ratingToDisplay} */}
 			<Link to={props.match.url + '/add'}>
-				<button>Add an Rating</button>
+				<button>Add a Rating</button>
 			</Link>
 
 			<Switch>
@@ -144,19 +144,21 @@ function RatingList(props) {
 					path={props.match.url}
 					render={(routerprops) => (
 						<Rating
+						{...routerprops}
 							newRatingState={newRatingState}
+							selectRating={selectRating}
 							deleteRating={deleteRating}
 						/>
 					)}
 				/>
 				<Route
 					exact
-					path={props.match.url + '/rating/:id' + '/edit'}
+					path={props.match.url + '/edit'}
 					render={(routerprops) => (
 						<RatingForm
 							{...routerprops}
 							handleSubmit={handleUpdate}
-							rating={form}
+							rating={selectedRating}
 							id={props.match.params.id}
 						/>
 					)}
@@ -166,3 +168,5 @@ function RatingList(props) {
 	);
 }
 export default RatingList;
+
+//'/rating/:id' 

@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Redirect, Link } from "react-router-dom";
+import "./Item.css";
 
 function Item(props) {
 	console.log("props in Item", props.newItemState);
@@ -17,22 +18,25 @@ function Item(props) {
 				console.log("testing the subarray.items.map", item, index);
 				return (
 					<div>
-						<p>Item name: {item.name}</p>
-						<p>Item type: {item.type}</p>
-						<img src={item.img} style={{ height: "8em" }} />
-
-					
+						<p className="ItemDesc">Name: {item.name}</p>
+						<p className="ItemDesc">Type: {item.type}</p>
+						<img
+							src={item.img}
+							style={{ height: "8em", borderRadius: "10px" }}
+						/>
+						<br></br>
 						<button
+							className="ItemButs"
 							onClick={() => {
-								props.selectItem(item)  // added
+								props.selectItem(item); // added
 								props.history.push(`${props.match.url}/edit`);
 							}}
 						>
 							Edit
 						</button>
-					
 
 						<button
+							className="ItemButs"
 							onClick={() => {
 								props.deleteItem(item);
 								// props.history.push("/items");
@@ -42,7 +46,7 @@ function Item(props) {
 						</button>
 
 						<Link to={`/item/${item._id}`}>
-							<button>List of Ratings</button>
+							<button className="ItemButs">Ratings</button>
 						</Link>
 
 						<hr />

@@ -2,7 +2,6 @@ import React from "react";
 // import from "react-router-dom";
 
 const ItemForm = (props) => {
-
 	//STATE FOR THE FORM
 	const [formData, setFormData] = React.useState(props.item);
 
@@ -61,7 +60,7 @@ const ItemForm = (props) => {
 				placeholder="Picture of item"
 				style={{}}
 			/>
-			<input type="submit" value={props.label} />
+			<input classname="ItemButs" type="submit" value={props.label} />
 		</form>
 	);
 };

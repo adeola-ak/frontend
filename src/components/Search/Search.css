@@ -3,7 +3,7 @@
 		padding: 150px 20px;
 		/* image belongs to Rere Dina https://id.pinterest.com/rerediena/amoled-food/ */
 		background-image: url(https://i.pinimg.com/originals/e6/fa/3d/e6fa3da270a13f1b8f9d3b8ad132fd00.jpg);
-		height: 400px;
+		height: 500px;
 		background-size: cover;
 	}
 	input {
@@ -12,13 +12,18 @@
 	.inputZipCode {
 		max-width: 75px;
 	}
+
+	.SearchBut {
+		background-color: #81b29a;
+		color: white;
+	}
 }
 @media only screen and (max-width: 1000px) and (min-width: 601px) {
-    .searchForm {
+	.searchForm {
 		padding: 200px 20px;
 		/* image belongs to Ranim Salame https://ranimsalame.com/category/health-wellness/ */
 		background-image: url(https://ranimsalame.com/wp-content/uploads/2019/09/photo-1543352634-a1c51d9f1fa7.jpg);
-		height: 200px;
+		height: 380px;
 		background-size: cover;
 	}
 	input {
@@ -29,11 +34,11 @@
 	}
 }
 @media only screen and (min-width: 1001px) {
-    .searchForm {
+	.searchForm {
 		padding: 200px 20px;
 		/* image belongs to WallpaperCave https://wallpapercave.com/foods-wallpapers */
 		background-image: url(https://wallpapercave.com/wp/wp3105346.jpg);
-		height: 330px;
+		height: 390px;
 		background-size: cover;
 	}
 	input {

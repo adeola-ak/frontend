@@ -7,7 +7,7 @@ import About from "./components/About/About";
 import Nav from "./shared/Nav";
 import Restaurant from "./components/Restaurant/Restaurant";
 import ItemList from "./components/ItemList/ItemList";
-import RatingList from './components/RatingList/RatingList'
+import RatingList from "./components/RatingList/RatingList";
 
 function App() {
 	// URL VARIABLE
@@ -56,7 +56,6 @@ function App() {
 	return (
 		<div className="App">
 			<main>
-				<h1>PALATE App Component</h1>
 				<Nav />
 
 				<Switch>
@@ -83,19 +82,22 @@ function App() {
 						)}
 					/>
 
-					<Route 
+					<Route
 						path="/restaurant/:id"
 						render={(routerprops) => (
-							<ItemList {...routerprops} searchedRestaurant={searchedRestaurant} />
-					)}
+							<ItemList
+								{...routerprops}
+								searchedRestaurant={searchedRestaurant}
+							/>
+						)}
 					/>
 
-					<Route 
-						path='/item/:id'
+					<Route
+						path="/item/:id"
 						render={(routerprops) => (
 							<RatingList {...routerprops} />
 						)}
-						/>
+					/>
 
 					<Route path="/About">
 						<About />

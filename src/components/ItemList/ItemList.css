@@ -1,0 +1,18 @@
+.RestName {
+	font-size: 30px;
+	color: #e07a5f;
+}
+
+.ItemButs {
+	background-color: #81b29a;
+	color: white;
+	border-radius: 5px;
+}
+
+.BiggerItemBut {
+	background-color: #81b29a;
+	color: white;
+	border-radius: 5px;
+	height: 30px;
+	width: 100px;
+}

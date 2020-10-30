@@ -11,13 +11,22 @@ function Restaurant(props) {
 		restaurantsToDisplay = props.searchedRestaurant.map((restaurant) => {
 			return (
 				<div>
-					<p>Restaurant Name: {restaurant.name}</p>
-					<p>Zipcode: {restaurant.zipcode}</p>
-					<img src={restaurant.img} style={{ height: "16em" }} />
+					<p className="RestName">
+						{restaurant.name}, {restaurant.zipcode}
+					</p>
+					<img
+						src={restaurant.img}
+						style={{ height: "12em", borderRadius: "10px" }}
+					/>
 					<p>Items: {restaurant.items[0].name}</p>
 
 					<Link to={`/restaurant/${restaurant._id}`}>
-						<button>List of Menu Items</button>
+						<button
+							className="MenuBut"
+							style={{ height: "30px", borderRadius: "10px" }}
+						>
+							Select This Restaurant
+						</button>
 					</Link>
 					{/* { restaurantId = restaurant._id}  */}
 					<hr />
@@ -29,7 +38,6 @@ function Restaurant(props) {
 
 	return (
 		<div>
-			<h1>Restaurant Component</h1>
 			{restaurantsToDisplay}
 
 			{/* <Route exact

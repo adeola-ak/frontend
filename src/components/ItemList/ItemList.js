@@ -2,6 +2,7 @@ import React from "react";
 import ItemForm from "../ItemForm/ItemForm";
 import Item from "../Item/Item";
 import { Route, Switch, Link } from "react-router-dom";
+import "./ItemList.css";
 
 function ItemList(props) {
 	// const items = props.searchedRestaurant;
@@ -162,7 +163,9 @@ function ItemList(props) {
 		restaurantName = rName.map((restaurant) => {
 			return (
 				<div>
-					<p>Restaurant Name: {restaurant.name}</p>
+					<p className="RestName">
+						Top Reviewed Items At:<br></br> {restaurant.name}
+					</p>
 					{/* <p>Zipcode: {restaurant.zipcode}</p>
 						<img src={restaurant.img} /> */}
 
@@ -178,7 +181,7 @@ function ItemList(props) {
 			{restaurantName}
 			{/* {itemsToDisplay} */}
 			<Link to={props.match.url + "/add"}>
-				<button>Add an Item</button>
+				<button className="BiggerItemBut">Add an Item</button>
 			</Link>
 
 			{/* exact path="/restaurant/:id/" */}

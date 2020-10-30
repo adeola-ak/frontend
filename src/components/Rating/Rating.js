@@ -82,6 +82,7 @@ function Rating(props) {
 
 					<button
 						onClick={() => {
+							props.selectRating(rating) 
 							props.history.push(`${props.match.url}/edit`);
 						}}
 					>
@@ -110,3 +111,6 @@ function Rating(props) {
 }
 
 export default Rating;
+
+
+//props.history.push(`${props.match.url}/rating/${rating._id}/edit`);
