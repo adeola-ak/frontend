@@ -48,12 +48,7 @@ function Item(props) {
 			return [renderSubArray];
 		});
 	}
-	return (
-		<>
-			<h1>Item Component</h1>
-			{renderItems}
-		</>
-	);
+	return <>{renderItems}</>;
 }
 
 export default Item;

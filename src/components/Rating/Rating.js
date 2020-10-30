@@ -101,7 +101,6 @@ function Rating(props) {
 	}
 	return (
 		<>
-			<h1>Rating Component</h1>
 			<h2 className="RestHeader">Popular Reviews: </h2>
 			{renderRatings}
 		</>

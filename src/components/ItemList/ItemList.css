@@ -7,7 +7,7 @@
 }
 
 .RestHeader {
-	font-size: 24px;
+	font-size: 34px;
 	color: #e07a5f;
 	text-align: left;
 	margin-left: 5%;
@@ -47,4 +47,27 @@
 	border: none;
 	margin-left: 5px;
 	font-family: "Voces", cursive;
+}
+
+@media only screen and (max-width: 1000px) and (min-width: 601px) {
+	.RestHeader {
+		font-size: 50px;
+		color: #e07a5f;
+		text-align: left;
+		margin-left: 5%;
+		font-family: "Courgette", cursive;
+	}
+
+	.Form {
+		margin: 0 auto;
+	}
+}
+@media only screen and (min-width: 1001px) {
+	.RestHeader {
+		font-size: 50px;
+		color: #e07a5f;
+		text-align: left;
+		margin-left: 5%;
+		font-family: "Courgette", cursive;
+	}
 }

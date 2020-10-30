@@ -1,4 +1,5 @@
 import React from "react";
+import "./RatingForm.css";
 // import font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // solid Star
@@ -141,6 +142,7 @@ const RatingForm = (props) => {
 		<form
 			style={{ width: "200px", margin: "0 auto" }}
 			onSubmit={handleSubmit}
+			className="Form"
 		>
 			<input
 				type="text"
@@ -166,7 +168,7 @@ const RatingForm = (props) => {
 				onChange={handleChange}
 				placeholder="comment on item"
 			/>
-			<input type="submit" value={props.label} />
+			<input className="RateItemButs" type="submit" value={props.label} />
 		</form>
 	);
 };

@@ -11,7 +11,10 @@ function Restaurant(props) {
 		restaurantsToDisplay = props.searchedRestaurant.map((restaurant) => {
 			return (
 				<div>
-					<p className="RestName" style={{ fontSize: "40px" }}>
+					<p
+						className="RestName"
+						style={{ fontSize: "45px", marginTop: "115px" }}
+					>
 						<span className="hidden">'</span>
 						{restaurant.name}
 						<span className="hidden">'</span>

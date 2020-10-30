@@ -1,0 +1,18 @@
+.Form {
+	margin: auto;
+}
+
+.RateItemButs {
+	background-color: rgb(0, 122, 255);
+	color: white;
+	margin-top: 24px;
+	border-radius: 7px;
+	padding: 5px;
+	height: 40px;
+	width: 117px;
+	font-size: 27px;
+	border-radius: 10px;
+	border: none;
+	margin-left: 5px;
+	font-family: "Voces", cursive;
+}

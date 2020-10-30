@@ -101,7 +101,7 @@ function ItemList(props) {
 	if (props.searchedRestaurant[0]) {
 		restaurantName = rName.map((restaurant) => {
 			return (
-				<div>
+				<div className="Form">
 					<p className="RestHeader">Top Reviewed Items At:</p>
 					<p className="RestName">{restaurant.name}</p>
 					{/* <p>Zipcode: {restaurant.zipcode}</p>
@@ -113,53 +113,54 @@ function ItemList(props) {
 
 	return (
 		<>
-			<h2>This is the ItemList Component</h2>
-			{restaurantName}
-			{/* {itemsToDisplay} */}
-			<Link to={props.match.url + "/add"}>
-				<button className="BiggerItemBut">Add an Item</button>
-			</Link>
+			<div className="Form">
+				{restaurantName}
+				{/* {itemsToDisplay} */}
+				<Link to={props.match.url + "/add"}>
+					<button className="BiggerItemBut">Add an Item</button>
+				</Link>
 
-			<Switch>
-				<Route
-					exact
-					path={props.match.url + "/add"}
-					render={(routerprops) => (
-						<ItemForm
-							{...routerprops}
-							handleSubmit={handleCreate}
-							item={form}
-							id={props.match.params.id}
-						/>
-					)}
-				/>
+				<Switch>
+					<Route
+						exact
+						path={props.match.url + "/add"}
+						render={(routerprops) => (
+							<ItemForm
+								{...routerprops}
+								handleSubmit={handleCreate}
+								item={form}
+								id={props.match.params.id}
+							/>
+						)}
+					/>
 
-				<Route
-					exact
-					path={props.match.url}
-					render={(routerprops) => (
-						<Item
-							{...routerprops}
-							newItemState={newItemState}
-							selectItem={selectItem}
-							deleteItem={deleteItem}
-						/>
-					)}
-				/>
+					<Route
+						exact
+						path={props.match.url}
+						render={(routerprops) => (
+							<Item
+								{...routerprops}
+								newItemState={newItemState}
+								selectItem={selectItem}
+								deleteItem={deleteItem}
+							/>
+						)}
+					/>
 
-				<Route
-					exact
-					path={props.match.url + "/edit"}
-					render={(routerprops) => (
-						<ItemForm
-							{...routerprops}
-							handleSubmit={handleUpdate}
-							item={selectedItem}
-							id={props.match.params.id}
-						/>
-					)}
-				/>
-			</Switch>
+					<Route
+						exact
+						path={props.match.url + "/edit"}
+						render={(routerprops) => (
+							<ItemForm
+								{...routerprops}
+								handleSubmit={handleUpdate}
+								item={selectedItem}
+								id={props.match.params.id}
+							/>
+						)}
+					/>
+				</Switch>
+			</div>
 		</>
 	);
 }

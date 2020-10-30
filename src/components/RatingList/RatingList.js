@@ -99,7 +99,7 @@ function RatingList(props) {
 			<Link to={props.match.url + "/add"}>
 				<button className="BiggerItemBut">Add a Rating</button>
 			</Link>
-
+			<br></br>
 			<Switch>
 				<Route
 					exact
