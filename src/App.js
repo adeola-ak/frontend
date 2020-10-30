@@ -1,59 +1,103 @@
-import React, {useState, useEffect} from 'react';
-import './App.css';
-import { Route } from "react-router-dom";
-import Search from './components/Search/Search'
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import { Route, Switch } from "react-router-dom";
+// import components
+import Search from "./components/Search/Search";
+import About from "./components/About/About";
+import Nav from "./shared/Nav";
+import Restaurant from "./components/Restaurant/Restaurant";
+import ItemList from "./components/ItemList/ItemList";
+import RatingList from "./components/RatingList/RatingList";
 
 function App() {
-    // URL VARIABLE
-  const url = "https://aa-palate-backend.herokuapp.com/"
+	// URL VARIABLE
+	const url = "https://aa-palate-backend.herokuapp.com/";
 
-  // State
-  const [restaurantData, setRestaurantData] = useState([])
+	// State for all restaurants
+	const [restaurantData, setRestaurantData] = useState([]);
 
-  // API Call to fetch Restaurants
-    const getRestaurants = () => {
-      fetch(url + "restaurants/")
-      .then(response => response.json())
-      .then(data => {
-        setRestaurantData(data)   
-      })
-    }
+	// State for restaurants searched through Search bar
+	const [searchedRestaurant, setSearchedRestaurant] = useState([]);
 
-   // Get list of restaurants on page load  
-  useEffect( () => getRestaurants(), [])
+	// API Call to fetch Restaurants (not currently doing anything)
+	const getRestaurants = () => {
+		fetch(url + "restaurants/")
+			.then((response) => response.json())
+			.then((data) => {
+				setRestaurantData(data.restaurants);
+			});
+	};
 
-    console.log("This is restaurant data", restaurantData)
-  // handleUpdate to update restautant when Search button is clicked
-  // method: put (update)
-  const handleUpdate = (restaurant) => {
-    fetch(url + "restaurant/" + restaurant.name, {
-      method: "put",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(restaurant)
-    })
-    .then(response => getRestaurants())    // .then to update the list of restaurants 
-    console.log("This is the restaurant data sent", restaurant)
-  }
+	// Get list of restaurants on page load (not currently doing anything)
+	useEffect(() => getRestaurants(), []);
 
-  return (
-    <div className="App">
-      <main>
-        <h1>PALATE App Component</h1>
+	//handleSubmit to update state when Search submit is clicked
+	const handleSubmit = (restaurant) => {
+		fetch(url + "restaurants/")
+			.then((response) => response.json())
+			.then((data) => {
+				let rest = data.restaurants;
+				rest.map((r) => {
+					if (restaurant.restaurant === r.name) {
+						setSearchedRestaurant([r]);
+					}
+				});
+			});
+	};
 
+	return (
+		<div className="App">
+			<main>
+				<Nav />
 
+				<Switch>
+					<Route
+						exact
+						path="/"
+						render={(routerprops) => (
+							<Search
+								{...routerprops}
+								handleSubmit={handleSubmit}
+							/>
+						)}
+					/>
 
-        <Route exact path="/"
-        render={(routerprops) => 
-        <Search {...routerprops} handleSubmit={handleUpdate} /> }
-        />
+					<Route
+						exact
+						path="/restaurant"
+						render={(routerprops) => (
+							<Restaurant
+								{...routerprops}
+								restaurantData={restaurantData}
+								searchedRestaurant={searchedRestaurant}
+							/>
+						)}
+					/>
 
+					<Route
+						path="/restaurant/:id"
+						render={(routerprops) => (
+							<ItemList
+								{...routerprops}
+								searchedRestaurant={searchedRestaurant}
+							/>
+						)}
+					/>
 
-      </main>
+					<Route
+						path="/item/:id"
+						render={(routerprops) => (
+							<RatingList {...routerprops} />
+						)}
+					/>
 
-    </div>
-  );
+					<Route path="/About">
+						<About />
+					</Route>
+				</Switch>
+			</main>
+		</div>
+	);
 }
 
 export default App;

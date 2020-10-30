@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
+
+.starRating {
+	display: flex;
+	justify-content: center;
+}
+
+.ReviewHead {
+	text-align: left;
+}
+
+.Review {
+	background-color: #eae2b7;
+	font-size: 27px;
+	font-family: "Courgette", cursive;
+}
+
+.ItemButs {
+	background-color: rgb(0, 122, 255);
+	color: white;
+	margin-top: 24px;
+	border-radius: 7px;
+	padding: 5px;
+	height: 20px;
+	width: 47px;
+	font-size: 10px;
+	border-radius: 10px;
+	border: none;
+	margin-left: 5px;
+	font-family: "Voces", cursive;
+}
+
+.RestHeader {
+	font-size: 24px;
+	color: #e07a5f;
+	text-align: left;
+	margin-left: 5%;
+	font-family: "Courgette", cursive;
+}

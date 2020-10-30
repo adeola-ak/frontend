@@ -1,0 +1,13 @@
+.BiggerItemBut {
+	background-color: rgb(0, 122, 255);
+	color: white;
+	margin-top: 24px;
+	border-radius: 7px;
+	padding: 5px;
+	height: 40px;
+	width: 150px;
+	font-size: 20px;
+	border-radius: 10px;
+	border: none;
+	font-family: "Voces", cursive;
+}
