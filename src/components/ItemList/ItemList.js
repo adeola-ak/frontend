@@ -2,26 +2,10 @@ import React from "react";
 import ItemForm from "../ItemForm/ItemForm";
 import Item from "../Item/Item";
 import { Route, Switch, Link } from "react-router-dom";
+import "./ItemList.css";
 
 function ItemList(props) {
-	// const items = props.searchedRestaurant;
-	// let itemsToDisplay = "Loading...";
-	// if (props.searchedRestaurant[0]) {
-	// 	itemsToDisplay = items.map((item) => {
-	// 		return (
-	// 			<div>
-	// 				<p>Item name: {item.items[0].name}</p>
-	// 				<p>Item type: {item.items[0].type}</p>
-	// 				<img src={item.items[0].img} />
-	// 				<hr />
-	// 			</div>
-	// 		);
-	// 	});
-	// }
-
-	console.log("testing routerprops in ItemList", props.match.params);
 	const id = props.match.params.id;
-	console.log("testing routerprops in ItemList - exampleId", id);
 
 	const url = "https://aa-palate-backend.herokuapp.com/";
 
@@ -52,13 +36,7 @@ function ItemList(props) {
 	};
 
 	const getRestaurantItems = () => {
-		// fetch(url + "restaurants/")
-		// 	.then((response) => response.json())
-		// 	.then((data) => {
-		// 		console.log("data - items", data);
-		// 		setNewItemState(props.searchedRestaurant);
-		// 	});
-		setNewItemState(props.searchedRestaurant)
+		setNewItemState(props.searchedRestaurant);
 	};
 
 	React.useEffect(() => getRestaurantItems(), []);
@@ -67,12 +45,9 @@ function ItemList(props) {
 		fetch(url + "restaurants/" + props.match.params.id)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log("data", data);
-				console.log("data.restaurants", data.restaurants)
 				setNewItemState([data.restaurants]);
 			});
-			
-	}
+	};
 
 	//handleCreate function for creating new items
 	const handleCreate = (newItem) => {
@@ -84,35 +59,10 @@ function ItemList(props) {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(payload),
-		}).then(()=> {
-			//   itemId = res.json()
-			//   return itemId
-
-			//   getItems();
-			  updateRestaurantList()
-			//   props.history.push(`/restaurant/${props.match.params.id}`)
-		  })
-		  console.log("newItemState in updateRestaurantList", newItemState)
-		console.log("payload", payload)
+		}).then(() => {
+			updateRestaurantList();
+		});
 	};
-
-	
-		// fetch to add item to restaurant
-		// fetch(url + "restaurants/" + props.searchedRestaurant._id + "/addItem/" + newItem._id, {
-		// 	method: "put",
-		// 	headers: {
-		// 		"Content-Type": "application/json",
-		// 	},
-		// 	body: JSON.stringify(newItem),
-		// }).then(() => {
-
-		// 	setResItems(emptyItem);
-		// 	getItems();
-		// });
-	
-	// 	setResItems(emptyItem);
-	// 	getItems();
-	// });
 
 	//handleUpdate function for updating items
 	const handleUpdate = (newItem) => {
@@ -123,8 +73,7 @@ function ItemList(props) {
 			},
 			body: JSON.stringify(newItem),
 		}).then(() => {
-			updateRestaurantList()
-		
+			updateRestaurantList();
 		});
 	};
 
@@ -133,7 +82,7 @@ function ItemList(props) {
 		fetch(url + "items/" + resItems._id, {
 			method: "delete",
 		}).then(() => {
-			updateRestaurantList()
+			updateRestaurantList();
 		});
 	};
 
@@ -142,39 +91,24 @@ function ItemList(props) {
 		return <p>Loading...</p>;
 	}
 
-	// if (isDeleted) {
-	// 	console.log("ITEM DELETED");
-	// 	return getItems();
-	// }
-
-	// // deleteItemto delete an item
-	// const deleteItem = (resItems) => {
-	// 	fetch(url + "items/" + resItems._id, {
-	// 		method: "delete",
-	// 	}).then((response) => getItems());
-	// };
-
 	const selectItem = (item) => {
 		setSelectedItem(item);
 	};
 
-
-// Adding the Restuarant Name to top of page 
-	let rName = props.searchedRestaurant
-	let restaurantName = "loading..."
+	// Adding the Restuarant Name to top of page
+	let rName = props.searchedRestaurant;
+	let restaurantName = "loading...";
 	if (props.searchedRestaurant[0]) {
-			restaurantName = rName.map((restaurant) => {
-				return (
-					<div>
-						<p>Restaurant Name: {restaurant.name}</p>
-						{/* <p>Zipcode: {restaurant.zipcode}</p>
+		restaurantName = rName.map((restaurant) => {
+			return (
+				<div>
+					<p className="RestHeader">Top Reviewed Items At:</p>
+					<p className="RestName">{restaurant.name}</p>
+					{/* <p>Zipcode: {restaurant.zipcode}</p>
 						<img src={restaurant.img} /> */}
-				
-					<hr />
-					
-					</div>
-				)
-			})
+				</div>
+			);
+		});
 	}
 
 	return (
@@ -183,49 +117,49 @@ function ItemList(props) {
 			{restaurantName}
 			{/* {itemsToDisplay} */}
 			<Link to={props.match.url + "/add"}>
-				<button>Add an Item</button>
+				<button className="BiggerItemBut">Add an Item</button>
 			</Link>
 
-		{/* exact path="/restaurant/:id/" */}
 			<Switch>
-			<Route
-				exact path={props.match.url + "/add"}
-				render={(routerprops) => (
-					<ItemForm
-						{...routerprops}
-						handleSubmit={handleCreate}
-						item={form}
-						id={props.match.params.id}
-					/>
-				)}
-			/>
+				<Route
+					exact
+					path={props.match.url + "/add"}
+					render={(routerprops) => (
+						<ItemForm
+							{...routerprops}
+							handleSubmit={handleCreate}
+							item={form}
+							id={props.match.params.id}
+						/>
+					)}
+				/>
 
-			<Route
-				exact path={props.match.url}
-				render={(routerprops) => (
-					<Item
-						{...routerprops}
-						newItemState={newItemState}
-						selectItem={selectItem}
-						deleteItem={deleteItem}
-					/>
-				)}
-			/>
-		
-			<Route
-				exact path={props.match.url + "/edit"}
-				render={(routerprops) => (
-					<ItemForm
-						{...routerprops}
-						handleSubmit={handleUpdate}
-						item={selectedItem}
-						id={props.match.params.id}
-					/>
-				)}
-			/>
+				<Route
+					exact
+					path={props.match.url}
+					render={(routerprops) => (
+						<Item
+							{...routerprops}
+							newItemState={newItemState}
+							selectItem={selectItem}
+							deleteItem={deleteItem}
+						/>
+					)}
+				/>
 
+				<Route
+					exact
+					path={props.match.url + "/edit"}
+					render={(routerprops) => (
+						<ItemForm
+							{...routerprops}
+							handleSubmit={handleUpdate}
+							item={selectedItem}
+							id={props.match.params.id}
+						/>
+					)}
+				/>
 			</Switch>
-		
 		</>
 	);
 }

@@ -1,5 +1,5 @@
 // import React
-import React from 'react';
+import React from "react";
 
 // import css
 import './About.css'
@@ -8,7 +8,6 @@ import jessePhoto from "./Jesse-img.jpg"
 import adeolaPhoto from "./Adeola-img.jpg"
 
 function About() {
-	
 	return (
 		<main>
 			<h2>Team</h2>

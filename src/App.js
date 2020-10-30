@@ -7,7 +7,7 @@ import About from "./components/About/About";
 import Nav from "./shared/Nav";
 import Restaurant from "./components/Restaurant/Restaurant";
 import ItemList from "./components/ItemList/ItemList";
-import RatingList from './components/RatingList/RatingList'
+import RatingList from "./components/RatingList/RatingList";
 
 function App() {
 	// URL VARIABLE
@@ -24,7 +24,6 @@ function App() {
 		fetch(url + "restaurants/")
 			.then((response) => response.json())
 			.then((data) => {
-				console.log("data", data.restaurants);
 				setRestaurantData(data.restaurants);
 			});
 	};
@@ -37,26 +36,18 @@ function App() {
 		fetch(url + "restaurants/")
 			.then((response) => response.json())
 			.then((data) => {
-				console.log("data !!", data);
 				let rest = data.restaurants;
-				console.log("restaurant from search form", restaurant);
 				rest.map((r) => {
 					if (restaurant.restaurant === r.name) {
 						setSearchedRestaurant([r]);
-					} else {
-						console.log(r.name);
 					}
 				});
 			});
 	};
 
-	console.log("This is the restaurantData state", restaurantData);
-	console.log("This is the searchedRestaurant state", searchedRestaurant);
-
 	return (
 		<div className="App">
 			<main>
-				<h1>PALATE App Component</h1>
 				<Nav />
 
 				<Switch>
@@ -83,19 +74,22 @@ function App() {
 						)}
 					/>
 
-					<Route 
+					<Route
 						path="/restaurant/:id"
 						render={(routerprops) => (
-							<ItemList {...routerprops} searchedRestaurant={searchedRestaurant} />
-					)}
+							<ItemList
+								{...routerprops}
+								searchedRestaurant={searchedRestaurant}
+							/>
+						)}
 					/>
 
-					<Route 
-						path='/item/:id'
+					<Route
+						path="/item/:id"
 						render={(routerprops) => (
 							<RatingList {...routerprops} />
 						)}
-						/>
+					/>
 
 					<Route path="/About">
 						<About />

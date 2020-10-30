@@ -4,42 +4,36 @@ import { Link, Route } from "react-router-dom";
 // import ItemList from "../ItemList/ItemList";
 
 function Restaurant(props) {
-	console.log(props.searchedRestaurant);
+	let town = "";
 	let restaurantId = "";
 	let restaurantsToDisplay = "Loading...";
 	if (props.searchedRestaurant[0]) {
 		restaurantsToDisplay = props.searchedRestaurant.map((restaurant) => {
 			return (
 				<div>
-					<p>Restaurant Name: {restaurant.name}</p>
-					<p>Zipcode: {restaurant.zipcode}</p>
-					<img src={restaurant.img} style={{ height: "16em" }} />
-					<p>Items: {restaurant.items[0].name}</p>
+					<p className="RestName" style={{ fontSize: "40px" }}>
+						<span className="hidden">'</span>
+						{restaurant.name}
+						<span className="hidden">'</span>
+					</p>
+					{/* <p>{restaurant.zipcode}</p> */}
 
+					<img
+						src={restaurant.img}
+						style={{ height: "16em", borderRadius: "10px" }}
+					/>
+					{/* <p>Items: {restaurant.items[0].name}</p> */}
+					<br></br>
 					<Link to={`/restaurant/${restaurant._id}`}>
-						<button>List of Menu Items</button>
+						<button className="MenuBut">Select</button>
 					</Link>
 					{/* { restaurantId = restaurant._id}  */}
-					<hr />
 				</div>
 			);
 		});
 	}
-	console.log("this is the restaurantId", restaurantId);
 
-	return (
-		<div>
-			<h1>Restaurant Component</h1>
-			{restaurantsToDisplay}
-
-			{/* <Route exact
-				path="/restaurant/:id"
-				render={(routerprops) => (
-					<ItemList {...routerprops} restaurantId={restaurantId} searchedRestaurant={props.searchedRestaurant} />
-				)}
-			/> */}
-		</div>
-	);
+	return <div>{restaurantsToDisplay}</div>;
 }
 
 export default Restaurant;
