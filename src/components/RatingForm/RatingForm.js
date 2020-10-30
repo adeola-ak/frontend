@@ -135,15 +135,29 @@ const RatingForm = (props) => {
 				onChange={handleChange}
 				placeholder="Enter your name"
 			/>
-			<input type="hidden" name="date" value={new Date()} />
+			{/* <input type='hidden' name='date' value={new Date()} />
 			{star1()}
 			{star2()}
 			{star3()}
-			<input type="hidden" name="stars" value={favStar} />
+			<input type='hidden' name='stars' value={favStar} /> */}
+			<input
+				type="date"
+				name="date"
+				value={formData.date}
+				onChange={handleChange}
+				placeholder="date"
+			/>
+			<input
+				type="number"
+				name="stars"
+				value={formData.stars}
+				onChange={handleChange}
+				placeholder="stars"
+			/>
 			<input
 				type="text"
-				name="commit"
-				value={formData.type}
+				name="comment"
+				value={formData.comment}
 				onChange={handleChange}
 				placeholder="comment on item"
 			/>
