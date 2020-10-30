@@ -1,9 +1,59 @@
 
 .team {
   border-radius: 50%;
-  width: 120px;
+  width: 140px;
+}
+
+.bio-container {
+  padding-bottom: 20px;
 }
 
 .bio-text {
     padding: 5px 20px;
+}
+
+.name {
+  font-weight: bold;
+  color: navy;
+}
+
+.intro-text {
+  padding: 5px 20px 15px 20px;
+
+}
+
+
+
+/* Responsive for Tablet */
+@media screen and (min-width: 768px) {
+  .bio-text {
+    font-size: 18px;
+    padding: 5px 100px;
+  }
+
+  .name {
+    font-size: 22px;
+
+  }
+  h2 {
+    font-size: 28px;
+  }
+}
+
+
+
+/* Responsive for Desktop */
+@media screen and (min-width: 1024px) {
+  .bio-text {
+    font-size: 20px;
+    padding: 5px 200px;
+  }
+
+  .name {
+    font-size:  25px;
+
+  }
+   h2 {
+    font-size: 30px;
+  }
 }
