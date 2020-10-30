@@ -150,11 +150,7 @@ const RatingForm = (props) => {
 				placeholder="Enter your name"
 			/>
 			<div className="starRating">Stars: {stars(favStar)}</div>
-			{/* <input
-				type='hidden'
-				name='stars'
-				value={favStar}
-			/> */}
+
 			<input
 				type="date"
 				name="date"
@@ -162,13 +158,7 @@ const RatingForm = (props) => {
 				onChange={handleChange}
 				placeholder="date"
 			/>
-			{/* <input
-				type='number'
-				name='stars'
-				value={formData.stars}
-				onChange={handleChange}
-				placeholder='stars'
-			/> */}
+
 			<input
 				type="text"
 				name="comment"

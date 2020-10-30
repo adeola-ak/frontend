@@ -25,6 +25,7 @@ function Search(props) {
 	return (
 		<form className="searchForm" onSubmit={handleSubmit}>
 			<input
+				className="inputRestaurant"
 				type="text"
 				name="restaurant"
 				placeholder="Name of Restaurant"

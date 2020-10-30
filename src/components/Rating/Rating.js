@@ -70,47 +70,42 @@ function Rating(props) {
 	// let renderSubArray = '';
 	if (props.newRatingState) {
 		renderRatings = example.map((rating) => {
-			// renderSubArray = subarray.ratings.map((rating, index) => {
 			return (
 				<div>
-					<p>Name: {rating.name}</p>
-					<p>Date: {rating.date}</p>
-					<div className="starRating">
-						Stars: {stars(rating.stars)}
-					</div>
-					<p>Comment: {rating.comment}</p>
-
+					{/* <p className="Review">{rating.date}</p> */}
+					<span className="Review">
+						{rating.name} said: "{rating.comment}"
+						<div className="starRating">{stars(rating.stars)} </div>{" "}
+					</span>
 					<button
+						className="ItemButs"
 						onClick={() => {
-							props.selectRating(rating) 
+							props.selectRating(rating);
 							props.history.push(`${props.match.url}/edit`);
 						}}
 					>
 						Edit
 					</button>
-
 					<button
+						className="ItemButs"
 						onClick={() => {
 							props.deleteRating(rating);
 						}}
 					>
 						Delete
 					</button>
+					<br></br> <br></br> <br></br>
 				</div>
 			);
-			// });
-			// return [renderSubArray];
 		});
 	}
 	return (
 		<>
 			<h1>Rating Component</h1>
+			<h2 className="RestHeader">Popular Reviews: </h2>
 			{renderRatings}
 		</>
 	);
 }
 
 export default Rating;
-
-
-//props.history.push(`${props.match.url}/rating/${rating._id}/edit`);

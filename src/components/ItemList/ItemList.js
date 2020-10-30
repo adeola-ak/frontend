@@ -5,24 +5,7 @@ import { Route, Switch, Link } from "react-router-dom";
 import "./ItemList.css";
 
 function ItemList(props) {
-	// const items = props.searchedRestaurant;
-	// let itemsToDisplay = "Loading...";
-	// if (props.searchedRestaurant[0]) {
-	// 	itemsToDisplay = items.map((item) => {
-	// 		return (
-	// 			<div>
-	// 				<p>Item name: {item.items[0].name}</p>
-	// 				<p>Item type: {item.items[0].type}</p>
-	// 				<img src={item.items[0].img} />
-	// 				<hr />
-	// 			</div>
-	// 		);
-	// 	});
-	// }
-
-	console.log("testing routerprops in ItemList", props.match.params);
 	const id = props.match.params.id;
-	console.log("testing routerprops in ItemList - exampleId", id);
 
 	const url = "https://aa-palate-backend.herokuapp.com/";
 
@@ -53,12 +36,6 @@ function ItemList(props) {
 	};
 
 	const getRestaurantItems = () => {
-		// fetch(url + "restaurants/")
-		// 	.then((response) => response.json())
-		// 	.then((data) => {
-		// 		console.log("data - items", data);
-		// 		setNewItemState(props.searchedRestaurant);
-		// 	});
 		setNewItemState(props.searchedRestaurant);
 	};
 
@@ -68,8 +45,6 @@ function ItemList(props) {
 		fetch(url + "restaurants/" + props.match.params.id)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log("data", data);
-				console.log("data.restaurants", data.restaurants);
 				setNewItemState([data.restaurants]);
 			});
 	};
@@ -85,33 +60,9 @@ function ItemList(props) {
 			},
 			body: JSON.stringify(payload),
 		}).then(() => {
-			//   itemId = res.json()
-			//   return itemId
-
-			//   getItems();
 			updateRestaurantList();
-			//   props.history.push(`/restaurant/${props.match.params.id}`)
 		});
-		console.log("newItemState in updateRestaurantList", newItemState);
-		console.log("payload", payload);
 	};
-
-	// fetch to add item to restaurant
-	// fetch(url + "restaurants/" + props.searchedRestaurant._id + "/addItem/" + newItem._id, {
-	// 	method: "put",
-	// 	headers: {
-	// 		"Content-Type": "application/json",
-	// 	},
-	// 	body: JSON.stringify(newItem),
-	// }).then(() => {
-
-	// 	setResItems(emptyItem);
-	// 	getItems();
-	// });
-
-	// 	setResItems(emptyItem);
-	// 	getItems();
-	// });
 
 	//handleUpdate function for updating items
 	const handleUpdate = (newItem) => {
@@ -140,18 +91,6 @@ function ItemList(props) {
 		return <p>Loading...</p>;
 	}
 
-	// if (isDeleted) {
-	// 	console.log("ITEM DELETED");
-	// 	return getItems();
-	// }
-
-	// // deleteItemto delete an item
-	// const deleteItem = (resItems) => {
-	// 	fetch(url + "items/" + resItems._id, {
-	// 		method: "delete",
-	// 	}).then(() => setIsDeleted(true));
-	// };
-
 	const selectItem = (item) => {
 		setSelectedItem(item);
 	};
@@ -163,13 +102,10 @@ function ItemList(props) {
 		restaurantName = rName.map((restaurant) => {
 			return (
 				<div>
-					<p className="RestName">
-						Top Reviewed Items At:<br></br> {restaurant.name}
-					</p>
+					<p className="RestHeader">Top Reviewed Items At:</p>
+					<p className="RestName">{restaurant.name}</p>
 					{/* <p>Zipcode: {restaurant.zipcode}</p>
 						<img src={restaurant.img} /> */}
-
-					<hr />
 				</div>
 			);
 		});
@@ -184,7 +120,6 @@ function ItemList(props) {
 				<button className="BiggerItemBut">Add an Item</button>
 			</Link>
 
-			{/* exact path="/restaurant/:id/" */}
 			<Switch>
 				<Route
 					exact
