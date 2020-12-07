@@ -21,10 +21,7 @@ function Restaurant(props) {
 					</p>
 					{/* <p>{restaurant.zipcode}</p> */}
 
-					<img
-						src={restaurant.img}
-						style={{ height: "16em", borderRadius: "10px" }}
-					/>
+					<img src={restaurant.img} style={{ height: "20em" }} />
 					{/* <p>Items: {restaurant.items[0].name}</p> */}
 					<br></br>
 					<Link to={`/restaurant/${restaurant._id}`}>
@@ -36,7 +33,16 @@ function Restaurant(props) {
 		});
 	}
 
-	return <div>{restaurantsToDisplay}</div>;
+	return (
+		<>
+			<h1 className="helper-text">You searched for...</h1>
+			<div>{restaurantsToDisplay}</div>
+			<h2>
+				If this is not the correct restaurant, please make a more
+				specific <Link to="/">search</Link>.
+			</h2>
+		</>
+	);
 }
 
 export default Restaurant;

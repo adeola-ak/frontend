@@ -6,12 +6,12 @@
 	margin-top: 14px;
 }
 
-.RestHeader {
-	font-size: 34px;
-	color: #e07a5f;
+.Header {
+	/* font-size: 34px;
+	color: #e07a5f; */
 	text-align: left;
 	margin-left: 5%;
-	font-family: "Courgette", cursive;
+	/* font-family: "Courgette", cursive; */
 }
 /*
 .ItemButs {
@@ -24,6 +24,7 @@
 	background-color: rgb(0, 122, 255);
 	color: white;
 	margin-top: 24px;
+	margin-left: 75%;
 	border-radius: 7px;
 	padding: 5px;
 	height: 40px;
@@ -50,12 +51,9 @@
 }
 
 @media only screen and (max-width: 1000px) and (min-width: 601px) {
-	.RestHeader {
-		font-size: 50px;
-		color: #e07a5f;
-		text-align: left;
-		margin-left: 5%;
-		font-family: "Courgette", cursive;
+	.BiggerItemBut {
+		margin-top: 24px;
+		margin-left: 95%;
 	}
 
 	.Form {

@@ -14,10 +14,7 @@ function Item(props) {
 					<div>
 						<p className="ItemDesc">The {item.name}</p>
 						<p className="ItemDesc">Type: {item.type}</p>
-						<img
-							src={item.img}
-							style={{ height: "12em", borderRadius: "10px" }}
-						/>
+						<img src={item.img} style={{ height: "12em" }} />
 						<br></br>
 						<Link to={`/item/${item._id}`}>
 							<button className="RatingButs">Ratings</button>

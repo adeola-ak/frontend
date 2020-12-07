@@ -102,7 +102,7 @@ function ItemList(props) {
 		restaurantName = rName.map((restaurant) => {
 			return (
 				<div className="Form">
-					<p className="RestHeader">Top Reviewed Items At:</p>
+					<h1 className="Header">Top Reviewed Items At:</h1>
 					<p className="RestName">{restaurant.name}</p>
 					{/* <p>Zipcode: {restaurant.zipcode}</p>
 						<img src={restaurant.img} /> */}

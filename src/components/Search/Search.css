@@ -38,7 +38,7 @@
 		padding: 200px 20px;
 		/* image belongs to Ranim Salame https://ranimsalame.com/category/health-wellness/ */
 		background-image: url(https://ranimsalame.com/wp-content/uploads/2019/09/photo-1543352634-a1c51d9f1fa7.jpg);
-		height: 400px;
+		height: 70vh;
 		background-size: cover;
 	}
 	input {
@@ -73,7 +73,7 @@
 		padding: 200px 20px;
 		/* image belongs to WallpaperCave https://wallpapercave.com/foods-wallpapers */
 		background-image: url(https://wallpapercave.com/wp/wp3105346.jpg);
-		height: 400px;
+		height: 50vh;
 		background-size: cover;
 	}
 	input {

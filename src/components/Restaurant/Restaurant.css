@@ -21,6 +21,10 @@
 	margin-top: 100px;
 }
 
+.helper-text {
+	margin-top: 50px;
+	margin-bottom: -60px;
+}
 .RestName:hover {
 	text-decoration: underline;
 }

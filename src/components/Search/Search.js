@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import "./Search.css";
 
 function Search(props) {
@@ -21,6 +22,17 @@ function Search(props) {
 		props.handleSubmit(formData);
 		props.history.push("/restaurant");
 	};
+
+	// const yelpRestaurants = () => {
+	// 	axios({
+	// 		url: `https://api.yelp.com/v3/businesses/search`,
+	// 		method: "GET",
+	// 		headers: {
+	// 			x-api-key: nWWS5LvIf8PT6S0hq2fxclcB3Yy3L2s7OX23zp6x2mZEse8nhNnS6ow14hlEAGAAMF_0bFZFr2K1ioUNGKiImx_IuSXXRSZTJdUFEp2-xL9K5IejN7xTwQizwqTOX3Yx,
+	// 		},
+	// 	}).then(response => {
+	// 	console.log(response)
+	// });
 
 	return (
 		<form className="searchForm" onSubmit={handleSubmit}>
