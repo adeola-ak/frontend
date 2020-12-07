@@ -22,7 +22,7 @@
 	text-decoration: none;
 	color: rgb(201, 74, 17);
 }
-
+/* font size of .appTitle and .navIcon need to be modified together to make it look good. the Icon has empty space as part of its size so it has to be adjusted manually */
 .appTitle {
 	text-decoration: none;
 	color: #eae2b7;
@@ -34,15 +34,14 @@
 	font-size: 46px;
 	padding: 7px 10px;
 }
+/* Connected to comment above */
 
-.desktop-link {
-	display: none;
-}
-@media only screen and (min-width: 1001px) {
+/* To just show the about and remove bars for screen sizes above mobile */
+@media (min-width: 426px) {
+	#linksList {
+		display: flex;
+	}
 	.navIcon {
 		display: none;
-	}
-	.desktop-link {
-		display: block;
 	}
 }

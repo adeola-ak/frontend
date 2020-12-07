@@ -34,12 +34,6 @@ function Nav() {
 				<Link className="navAbout" to="/About" onClick={handleClick}>
 					About
 				</Link>
-				<div className="desktop-link">
-					<Link to="/About" onClick={handleClick}>
-						{" "}
-						<p>About</p>
-					</Link>{" "}
-				</div>
 			</nav>
 		</div>
 	);
