@@ -35,3 +35,13 @@
 	padding: 7px 10px;
 }
 /* Connected to comment above */
+
+/* To just show the about and remove bars for screen sizes above mobile */
+@media (min-width: 426px) {
+	#linksList {
+		display: flex;
+	}
+	.navIcon {
+		display: none;
+	}
+}
