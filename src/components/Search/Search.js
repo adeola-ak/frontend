@@ -19,17 +19,40 @@ function Search(props) {
 	const handleSubmit = (event) => {
 		console.log("Search submit button clicked!");
 		event.preventDefault();
-		props.handleSubmit(formData);
-		props.history.push("/restaurant");
+		// props.handleSubmit(formData);
+		// props.history.push("/restaurant");
+		yelpData();
 	};
 
-	const handleNewSubmit = (event) => {
-		event.preventDefault();
-		fetch("http://localhost:3001/yelp/data")
-			.then((resp) => resp.json())
-			.then((data) => {
-				console.log(data);
-			});
+	// const handleNewSubmit = (event) => {
+	// 	event.preventDefault();
+	// 	props.handleSubmit(formData)
+	// 	fetch("http://localhost:3001/yelp/data")
+	// 		.then((resp) => resp.json())
+	// 		.then((data) => {
+	// 			console.log(data);
+	// 		});
+	// };
+
+	const yelpData = () => {
+		fetch("http://localhost:3000/yelp/data", {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				restaurant: formData.restaurant,
+				zipcode: formData.zipcode,
+			}),
+			// params: {
+			// 	restaurant: formData.restaurant,
+			// 	zipcode: formData.zipcode,
+			// },
+		}).then((response) => {
+			//do something awesome that makes the world a better place
+			console.log(response);
+		});
 	};
 
 	return (
@@ -53,7 +76,7 @@ function Search(props) {
 				/>
 				<input className="SearchBut" type="submit" value="Search" />
 			</form>
-			<button onClick={handleNewSubmit}>display local</button>
+			{/* <button onClick={}>display local</button> */}
 		</>
 	);
 }
