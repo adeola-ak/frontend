@@ -40,6 +40,7 @@
 @media (min-width: 426px) {
 	#linksList {
 		display: flex;
+		justify-content: flex-end;
 	}
 	.navIcon {
 		display: none;
