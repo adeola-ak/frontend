@@ -37,7 +37,7 @@
 /* Connected to comment above */
 
 /* To just show the about and remove bars for screen sizes above mobile */
-@media (min-width: 426px) {
+@media (min-width: 769px) {
 	#linksList {
 		display: flex;
 		justify-content: flex-end;
