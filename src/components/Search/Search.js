@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+// import axios from "axios";
 import "./Search.css";
 
 function Search(props) {
@@ -21,7 +21,7 @@ function Search(props) {
 		event.preventDefault();
 		// props.handleSubmit(formData);
 		// props.history.push("/restaurant");
-		yelpData();
+		yelpData(formData)
 	};
 
 	// const handleNewSubmit = (event) => {
@@ -34,7 +34,7 @@ function Search(props) {
 	// 		});
 	// };
 
-	const yelpData = () => {
+	const yelpData = (formData) => {
 		fetch("http://localhost:3000/yelp/data", {
 			method: "POST",
 			headers: {
