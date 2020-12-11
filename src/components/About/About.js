@@ -10,10 +10,20 @@ import adeolaPhoto from "./Adeola-img.jpg"
 function About() {
 	return (
 		<main>
-			<h2>Team</h2>
-				<p className="intro-text">We are current students in General Assembly’s full time Software Engineering Immersive program. PALATE is our Unit 3 Project.</p>
-
-				<div className="bio-container">
+		<div className="intro-text">
+				<h1>About</h1>
+				<p>PALATE is a full stack web application built with the MERN stack (MongoDB, Express, React and Node.js) with full CRUD functionality.</p>
+				<p>The application highlights ratings and reviews for specific items on a restaurant menu.</p>
+				<p>Users can utilize the app looking to find suggestions and as a reviewer.</p>
+				<ul>
+					<li>As someone looking for suggestions, users can search for a restaurant, find a list of menu items, ratings and reviews associated with specific menu items.</li>
+					<li>As a reviewer, users can search for a restaurant, add items, add item ratings and write item reviews.</li>
+				</ul>	
+				<p>PALATE is our Unit 3 Project for General Assembly’s Software Engineering Immersive program.</p>
+			</div>
+				
+			<div className="bio-container">
+				<h1>Team</h1>
 				<img src={adeolaPhoto} alt="Adeola bio photo" className="team"/>
 					<p className="name">Adeola</p>
 					<p className="bio-text">Hi! I really enjoyed seeing all the core fundamentals

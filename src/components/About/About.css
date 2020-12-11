@@ -7,6 +7,11 @@
   padding-bottom: 20px;
 }
 
+.bio-container h1 {
+  padding-left: 20px;
+  text-align: left;
+}
+
 .bio-text {
     padding: 5px 20px;
 }
@@ -18,10 +23,8 @@
 
 .intro-text {
   padding: 5px 20px 15px 20px;
-
+  text-align: left;
 }
-
-
 
 /* Responsive for Tablet */
 @media screen and (min-width: 768px) {
@@ -34,7 +37,7 @@
     font-size: 22px;
 
   }
-  h2 {
+  h1 {
     font-size: 28px;
   }
 }
@@ -52,7 +55,7 @@
     font-size:  25px;
 
   }
-   h2 {
+   h1 {
     font-size: 30px;
   }
 }
