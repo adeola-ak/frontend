@@ -7,6 +7,11 @@
   padding-bottom: 20px;
 }
 
+.bio-container h1 {
+  text-align: left;
+  padding-left: 20px;
+}
+
 .bio-text {
     padding: 5px 20px;
 }
@@ -18,7 +23,7 @@
 
 .intro-text {
   padding: 5px 20px 15px 20px;
-
+  text-align: left;
 }
 
 
