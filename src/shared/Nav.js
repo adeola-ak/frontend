@@ -17,7 +17,7 @@ function Nav() {
 	// This is to make sure it always shows up when messing with screen sizes
 	React.useEffect(() => {
 		let nav = document.getElementById('linksList');
-		if (width > 425) {
+		if (width > 768) {
 			nav.style.display = 'flex'
 		} else {
 			nav.style.display = 'none';
@@ -25,7 +25,7 @@ function Nav() {
 	}, [width])
 
 	const handleClickBars = () => {
-		if (width < 426) {
+		if (width < 769) {
 			let nav = document.getElementById('linksList');
 			if (nav.style.display === 'flex') {
 				nav.style.display = 'none';
@@ -35,7 +35,7 @@ function Nav() {
 		}
 	};
 	const handleClick = () => {
-		if (width < 426) {
+		if (width < 769) {
 			let nav = document.getElementById('linksList');
 			nav.style.display = 'none';
 		}
