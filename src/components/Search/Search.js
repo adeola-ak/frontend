@@ -59,7 +59,7 @@ function Search(props) {
 	const yelpCall = async (formData) => {
 		let zip =  formData.zipcode
 		let rest = formData.restaurant
-		const api_url = `http://localhost:3000/data/${zip}/${rest}`
+		const api_url = `http://localhost:3000/yelp/data/${zip}/${rest}`
 		const response = await fetch(api_url)
 		const json = await response.json()
 		console.log(json)
