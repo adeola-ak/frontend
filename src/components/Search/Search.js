@@ -21,7 +21,8 @@ function Search(props) {
 		event.preventDefault();
 		// props.handleSubmit(formData);
 		// props.history.push("/restaurant");
-		yelpData(formData)
+		// yelpData(formData)
+		yelpCall(formData)
 	};
 
 	// const handleNewSubmit = (event) => {
@@ -34,26 +35,35 @@ function Search(props) {
 	// 		});
 	// };
 
-	const yelpData = (formData) => {
-		fetch("http://localhost:3000/yelp/data", {
-			method: "POST",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				restaurant: formData.restaurant,
-				zipcode: formData.zipcode,
-			}),
-			// params: {
-			// 	restaurant: formData.restaurant,
-			// 	zipcode: formData.zipcode,
-			// },
-		}).then((response) => {
-			//do something awesome that makes the world a better place
-			console.log(response);
-		});
-	};
+	// const yelpData = (formData) => {
+	// 	fetch("http://localhost:3000/yelp/data", {
+	// 		method: "POST",
+	// 		headers: {
+	// 			Accept: "application/json",
+	// 			"Content-Type": "application/json",
+	// 		},
+	// 		body: JSON.stringify({
+	// 			restaurant: formData.restaurant,
+	// 			zipcode: formData.zipcode,
+	// 		}),
+	// 		// params: {
+	// 		// 	restaurant: formData.restaurant,
+	// 		// 	zipcode: formData.zipcode,
+	// 		// },
+	// 	}).then((response) => {
+	// 		//do something awesome that makes the world a better place
+	// 		console.log(response);
+	// 	});
+	// };
+
+	const yelpCall = async (formData) => {
+		let zip =  formData.zipcode
+		let rest = formData.restaurant
+		const api_url = `http://localhost:3000/data/${zip}/${rest}`
+		const response = await fetch(api_url)
+		const json = await response.json()
+		console.log(json)
+	}
 
 	return (
 		<>
