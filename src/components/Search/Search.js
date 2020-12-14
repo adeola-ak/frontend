@@ -1,14 +1,17 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 // import axios from "axios";
 import "./Search.css";
 
 function Search(props) {
 	// State Live here
 	// state is for form values in a object
-	const [formData, setFormData] = React.useState({
+	const [formData, setFormData] = useState({
 		restaurant: "",
 		zipcode: "",
 	});
+
+	// // state to store yelp data
+	// const [yelpData, setYelpData] = useState({})
 
 	// Handle Change Function
 	const handleChange = (event) => {
@@ -24,6 +27,12 @@ function Search(props) {
 		// yelpData(formData)
 		yelpCall(formData)
 	};
+
+	// useEffect(() => {
+	// 	if(yelpData.businesses) {
+	// 	console.log(yelpData)
+	// 	}
+	// }, [yelpData])
 
 	// const handleNewSubmit = (event) => {
 	// 	event.preventDefault();
@@ -59,11 +68,13 @@ function Search(props) {
 	const yelpCall = async (formData) => {
 		let zip =  formData.zipcode
 		let rest = formData.restaurant
-		const api_url = `http://localhost:3000/yelp/data/${zip}/${rest}`
+		const api_url = `http://localhost:3000/restaurants/data/${zip}/${rest}`
 		const response = await fetch(api_url)
 		const json = await response.json()
 		console.log(json)
+		// setYelpData(json)
 	}
+	
 
 	return (
 		<>
