@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 // import axios from "axios";
 import "./Search.css";
 
@@ -9,9 +9,6 @@ function Search(props) {
 		restaurant: "",
 		zipcode: "",
 	});
-
-	// // state to store yelp data
-	// const [yelpData, setYelpData] = useState({})
 
 	// Handle Change Function
 	const handleChange = (event) => {
@@ -27,12 +24,6 @@ function Search(props) {
 		// yelpData(formData)
 		yelpCall(formData)
 	};
-
-	// useEffect(() => {
-	// 	if(yelpData.businesses) {
-	// 	console.log(yelpData)
-	// 	}
-	// }, [yelpData])
 
 	// const handleNewSubmit = (event) => {
 	// 	event.preventDefault();
@@ -72,7 +63,6 @@ function Search(props) {
 		const response = await fetch(api_url)
 		const json = await response.json()
 		console.log(json)
-		// setYelpData(json)
 	}
 	
 
