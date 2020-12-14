@@ -8,7 +8,7 @@
 #linksList {
 	display: none;
 	justify-content: center;
-	background-color: #eae2b7;
+	background-color: white;
 	font-size: 30px;
 	padding: 10px;
 }
@@ -21,6 +21,7 @@
 .navAbout {
 	text-decoration: none;
 	color: rgb(201, 74, 17);
+	font-size: 20px;
 }
 /* font size of .appTitle and .navIcon need to be modified together to make it look good. the Icon has empty space as part of its size so it has to be adjusted manually */
 .appTitle {
