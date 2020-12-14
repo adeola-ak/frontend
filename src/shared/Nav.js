@@ -14,15 +14,16 @@ function Nav() {
 		setWidth(window.innerWidth);
 		console.log(width);
 	});
+	// No longer needed but leaving in in case we want to change back
 	// This is to make sure it always shows up when messing with screen sizes
-	React.useEffect(() => {
-		let nav = document.getElementById('linksList');
-		if (width > 768) {
-			nav.style.display = 'flex'
-		} else {
-			nav.style.display = 'none';
-		}
-	}, [width])
+	// React.useEffect(() => {
+	// 	let nav = document.getElementById('linksList');
+	// 	if (width > 768) {
+	// 		nav.style.display = 'flex'
+	// 	} else {
+	// 		nav.style.display = 'none';
+	// 	}
+	// }, [width])
 
 	const handleClickBars = () => {
 		if (width < 769) {
@@ -49,6 +50,9 @@ function Nav() {
 				<div className='navIcon' onClick={handleClickBars}>
 					<FontAwesomeIcon className='appTitle' icon={faBars} />
 				</div>
+				<Link className='navAboutDesktop' to='/About' onClick={handleClick}>
+					About
+				</Link>
 			</header>
 			<nav id='linksList'>
 				<Link className='navAbout' to='/About' onClick={handleClick}>
