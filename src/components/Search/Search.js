@@ -19,10 +19,10 @@ function Search(props) {
 	const handleSubmit = (event) => {
 		console.log("Search submit button clicked!");
 		event.preventDefault();
-		// props.handleSubmit(formData);
-		// props.history.push("/restaurant");
+		props.handleSubmit(formData);
+		props.history.push("/restaurant");
 		// yelpData(formData)
-		yelpCall(formData)
+		// yelpCall(formData)
 	};
 
 	// const handleNewSubmit = (event) => {
@@ -57,13 +57,13 @@ function Search(props) {
 	// };
 
 	const yelpCall = async (formData) => {
-		let zip =  formData.zipcode
-		let rest = formData.restaurant
-		const api_url = `http://localhost:3000/yelp/data/${zip}/${rest}`
-		const response = await fetch(api_url)
-		const json = await response.json()
-		console.log(json)
-	}
+		let zip = formData.zipcode;
+		let rest = formData.restaurant;
+		const api_url = `http://localhost:3000/yelp/data/${zip}/${rest}`;
+		const response = await fetch(api_url);
+		const json = await response.json();
+		console.log(json);
+	};
 
 	return (
 		<>

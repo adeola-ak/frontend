@@ -14,7 +14,6 @@ function Nav() {
 	);
 	window.addEventListener("resize", function () {
 		setWidth(window.innerWidth);
-		console.log(width);
 	});
 	// This is to make sure it always shows up when messing with screen sizes
 	React.useEffect(() => {
