@@ -36,14 +36,29 @@
 	padding: 7px 10px;
 }
 /* Connected to comment above */
+.navAboutDesktop {
+	display: none;
+	/* I just copied from title just to have a starting point */
+	text-decoration: none;
+	color: #eae2b7;
+	font-size: 20px;
+	padding: 20px;
+	font-family: "Fredoka One", cursive;
+	/* this is needed if you continue to have this be a smaller font than the title */
+	align-self: center;
+}
 
-/* To just show the about and remove bars for screen sizes above mobile */
+/* To just show the about and remove bars for screen sizes above tablet */
 @media (min-width: 769px) {
 	#linksList {
-		display: flex;
+		display: none;
 		justify-content: flex-end;
 	}
 	.navIcon {
 		display: none;
+	}
+	/* This is for the about on the desktop screen */
+	.navAboutDesktop {
+		display: inline;
 	}
 }
