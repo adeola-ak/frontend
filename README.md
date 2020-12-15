@@ -1,6 +1,6 @@
 # PALATE
 
-PALATE is an application created with the purpose of making ones' decision easier when deciding what to choose from a restaurants' menu. Sifting through Google or Yelp reviews shows what you can expect from your restaurant experience at a high level. PALATE dives a little deeper and gets more specific with reviews that are not left on a users experience, but left soley on the meal they ordered. Search and add items to a restaurants PALATE menu to make reviews of your own.
+PALATE is an application created with the purpose of making ones' decision easier when deciding what to choose from a restaurants' menu. Sifting through Google or Yelp reviews shows what you can expect from your restaurant experience at a high level. PALATE dives a little deeper and gets more specific with reviews that are not left on a users experience, but left soley on the meal that they ordered. Search and add items to a restaurants online PALATE menu to make reviews of your own.
 
 Tech Stack: React, Express, mongoDB, Yelp API
 
