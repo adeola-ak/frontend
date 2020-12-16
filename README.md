@@ -12,7 +12,7 @@ Tech Stack: React, Express, mongoDB, Yelp API
 
 This project is still being built. You can soon expect to see...
 
-1. Yelp API is currently being implemented. Should be live by 12/31/20. As it stands now searchable restaurants are restaurants seeded in our database: "In-n-out", "Dog Haus", "Ventana", "Palace Diner", "Pieology", "Rose Foods". Zipcode is not a required field.
+1. Yelp API is currently being implemented and should be live by 12/31/20. As it stands now searchable restaurants are restaurants seeded in our database: "In-n-out", "Dog Haus", "Ventana", "Palace Diner", "Pieology", "Rose Foods". Zipcode is not a required field.
 
 2. Improved UX/UI for each page
 
