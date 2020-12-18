@@ -18,7 +18,7 @@ function App() {
 	const [restaurantData, setRestaurantData] = useState([]);
 
 	// State for restaurants searched through Search bar
-	const [searchedRestaurant, setSearchedRestaurant] = useState([]);
+	const [searchedRestaurants, setSearchedRestaurants] = useState([]);
 
 	// API Call to fetch Restaurants (not currently doing anything)
 	const getRestaurants = () => {
@@ -33,17 +33,18 @@ function App() {
 	useEffect(() => getRestaurants(), []);
 
 	//handleSubmit to update state when Search submit is clicked
-	const handleSubmit = (restaurant) => {
-		fetch(url + "restaurants/")
-			.then((response) => response.json())
-			.then((data) => {
-				let rest = data.restaurants;
-				rest.map((r) => {
-					if (restaurant.restaurant === r.name) {
-						setSearchedRestaurant([r]);
-					}
-				});
-			});
+	const handleSubmit = (yelpData) => {
+			setSearchedRestaurants(yelpData);
+		// fetch(url + "restaurants/")
+		// 	.then((response) => response.json())
+		// 	.then((data) => {
+		// 		let rest = data.restaurants;
+		// 		rest.map((r) => {
+		// 			if (restaurant.restaurant === r.name) {
+		// 				setSearchedRestaurant([r]);
+		// 			}
+		// 		});
+		// 	});
 	};
 
 	return (
@@ -70,7 +71,7 @@ function App() {
 							<Restaurant
 								{...routerprops}
 								restaurantData={restaurantData}
-								searchedRestaurant={searchedRestaurant}
+								searchedRestaurants={searchedRestaurants}
 							/>
 						)}
 					/>
@@ -80,7 +81,7 @@ function App() {
 						render={(routerprops) => (
 							<ItemList
 								{...routerprops}
-								searchedRestaurant={searchedRestaurant}
+								searchedRestaurants={searchedRestaurants}
 							/>
 						)}
 					/>

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 // import axios from "axios";
 import "./Search.css";
 
@@ -10,6 +10,8 @@ function Search(props) {
 		zipcode: "",
 	});
 
+	const [yelpData, setYelpData] = useState([])
+
 	// Handle Change Function
 	const handleChange = (event) => {
 		event.preventDefault();
@@ -17,14 +19,24 @@ function Search(props) {
 	};
 
 	const handleSubmit = (event) => {
-		console.log("Search submit button clicked!");
+		// console.log("Search submit button clicked!");
 		event.preventDefault();
+		yelpCall(formData)
+		
+		// props.handleSubmit(yelpData)
 		// props.handleSubmit(formData);
 		// props.history.push("/restaurant");
-		// yelpData(formData)
-		yelpCall(formData)
 	};
+	
+	useEffect(() => {
+		if(yelpData[0]) {
+			// console.log("This is yelpData in the useEffect", yelpData)
+			props.handleSubmit(yelpData)
+			props.history.push("/restaurant");
+		}
+	}, [yelpData[0]])
 
+	// console.log("This is yelpData outside of useEffect", yelpData)
 	// const handleNewSubmit = (event) => {
 	// 	event.preventDefault();
 	// 	props.handleSubmit(formData)
@@ -62,7 +74,8 @@ function Search(props) {
 		const api_url = `http://localhost:3000/restaurants/data/${zip}/${rest}`
 		const response = await fetch(api_url)
 		const json = await response.json()
-		console.log(json)
+		// console.log(json)
+		setYelpData([json])
 	}
 	
 
