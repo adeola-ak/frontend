@@ -113,7 +113,7 @@ function ItemList(props) {
 	let rName = props.searchedRestaurants;
 	let restaurantName = "loading...";
 	if (props.searchedRestaurants[0]) {
-		const test = props.searchedRestaurants[0].restaurantsFoundInDb
+		const test = props.searchedRestaurants[0].restaurants
 		
 		restaurantName = test.map((restaurant) => {
 			if(restaurant._id === id) {

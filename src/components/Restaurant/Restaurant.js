@@ -9,8 +9,12 @@ function Restaurant(props) {
 	let restaurantsToDisplay = "Loading...";
 	console.log("this is props in restaurant", props.searchedRestaurants)
 	if (props.searchedRestaurants[0]) {
-		const test = props.searchedRestaurants[0].restaurantsFoundInDb
+		const test = props.searchedRestaurants[0].restaurants
 		restaurantsToDisplay = test.map((restaurant, index) => {
+			let allRestaurants = ""
+			for (let i = 0; i < restaurant.address.length; i += 1) {
+				allRestaurants += restaurant.address[i] + ' '
+			}
 			return (
 				<div>
 					<p
@@ -21,7 +25,10 @@ function Restaurant(props) {
 						{restaurant.name}
 						<span className="hidden">'</span>
 					</p>
-					<p>	{restaurant.zipcode}</p>
+					<p>{restaurant.phone}</p>
+					
+					<p>{allRestaurants}</p>
+					{/* <p>{restaurant.zipcode}</p> */}
 					{/* <p>	{restaurant.restaurantsFoundInDb[index].zipcode}</p> */}
 
 					<img src={restaurant.img} style={{ height: "20em" }} />
