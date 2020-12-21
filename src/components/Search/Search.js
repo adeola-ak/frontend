@@ -71,7 +71,7 @@ function Search(props) {
 	const yelpCall = async (formData) => {
 		let zip =  formData.zipcode
 		let rest = formData.restaurant
-		const api_url = `http://localhost:3000/restaurants/data/${zip}/${rest}`
+		const api_url = `https://aa-palate-backend.herokuapp.com/restaurants/data/${zip}/${rest}`
 		const response = await fetch(api_url)
 		const json = await response.json()
 		// console.log(json)
