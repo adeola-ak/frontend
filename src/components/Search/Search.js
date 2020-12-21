@@ -6,7 +6,7 @@ function Search(props) {
 	const [formData, setFormData] = useState({
 		restaurant: "",
 		zipcode: "",
-	});
+	})
 
 	const [yelpData, setYelpData] = useState([])
 
@@ -35,7 +35,6 @@ function Search(props) {
 		const api_url = `https://aa-palate-backend.herokuapp.com/restaurants/data/${zip}/${rest}`
 		const response = await fetch(api_url)
 		const json = await response.json()
-		// console.log(json)
 		setYelpData([json])
 	}
 
