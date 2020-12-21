@@ -8,17 +8,39 @@ import { Link } from "react-router-dom";
 import "./Nav.css";
 
 function Nav() {
-	const handleClickBars = () => {
+	// This is for managing onClick
+	const [width, setWidth] = React.useState(
+		window.innerWidth > 0 ? window.innerWidth : Screen.width
+	);
+	window.addEventListener("resize", function () {
+		setWidth(window.innerWidth);
+	});
+	// This is to make sure it always shows up when messing with screen sizes
+	React.useEffect(() => {
 		let nav = document.getElementById("linksList");
-		if (nav.style.display === "flex") {
+		// leaving it like this just in case we want to mess with this later
+		if (width > 768) {
 			nav.style.display = "none";
 		} else {
-			nav.style.display = "flex";
+			nav.style.display = "none";
+		}
+	}, [width]);
+
+	const handleClickBars = () => {
+		if (width < 769) {
+			let nav = document.getElementById("linksList");
+			if (nav.style.display === "flex") {
+				nav.style.display = "none";
+			} else {
+				nav.style.display = "flex";
+			}
 		}
 	};
 	const handleClick = () => {
-		let nav = document.getElementById("linksList");
-		nav.style.display = "none";
+		if (width < 769) {
+			let nav = document.getElementById("linksList");
+			nav.style.display = "none";
+		}
 	};
 	return (
 		<div className="navBar">
@@ -29,6 +51,13 @@ function Nav() {
 				<div className="navIcon" onClick={handleClickBars}>
 					<FontAwesomeIcon className="appTitle" icon={faBars} />
 				</div>
+				<Link
+					className="navAboutDesktop"
+					to="/About"
+					onClick={handleClick}
+				>
+					About
+				</Link>
 			</header>
 			<nav id="linksList">
 				<Link className="navAbout" to="/About" onClick={handleClick}>
