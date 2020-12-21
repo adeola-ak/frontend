@@ -9,6 +9,8 @@ function ItemList(props) {
 
 	const url = "https://aa-palate-backend.herokuapp.com/";
 
+	// const url = "http://localhost:3000/"
+	
 	const [resItems, setResItems] = React.useState([]);
 
 	const [newItemState, setNewItemState] = React.useState([]);
@@ -36,18 +38,31 @@ function ItemList(props) {
 	};
 
 	const getRestaurantItems = () => {
-		setNewItemState(props.searchedRestaurant);
+		fetch(url + "restaurants/" + props.match.params.id)
+			.then((response) => response.json())
+			.then((data) => {
+				console.log("data from updateRest function", data)
+				setNewItemState([data.restaurants]);
+			});
+
+		// const test = props.searchedRestaurants[0].restaurantsFoundInDb
+		// restaurantName = test.map((restaurant) => {
+		// 	if(restaurant._id === id) {
+		// 		setNewItemState(restaurant);
+		// 	}
+		// })	
 	};
 
 	React.useEffect(() => getRestaurantItems(), []);
 
-	const updateRestaurantList = () => {
-		fetch(url + "restaurants/" + props.match.params.id)
-			.then((response) => response.json())
-			.then((data) => {
-				setNewItemState([data.restaurants]);
-			});
-	};
+	// const updateRestaurantList = () => {
+	// 	fetch(url + "restaurants/" + props.match.params.id)
+	// 		.then((response) => response.json())
+	// 		.then((data) => {
+	// 			console.log("data from updateRest function", data)
+	// 			setNewItemState([data.restaurants]);
+	// 		});
+	// };
 
 	//handleCreate function for creating new items
 	const handleCreate = (newItem) => {
@@ -60,7 +75,7 @@ function ItemList(props) {
 			},
 			body: JSON.stringify(payload),
 		}).then(() => {
-			updateRestaurantList();
+			getRestaurantItems()
 		});
 	};
 
@@ -73,7 +88,7 @@ function ItemList(props) {
 			},
 			body: JSON.stringify(newItem),
 		}).then(() => {
-			updateRestaurantList();
+			getRestaurantItems()
 		});
 	};
 
@@ -82,7 +97,7 @@ function ItemList(props) {
 		fetch(url + "items/" + resItems._id, {
 			method: "delete",
 		}).then(() => {
-			updateRestaurantList();
+			getRestaurantItems()
 		});
 	};
 
@@ -96,10 +111,13 @@ function ItemList(props) {
 	};
 
 	// Adding the Restuarant Name to top of page
-	let rName = props.searchedRestaurant;
+	let rName = props.searchedRestaurants;
 	let restaurantName = "loading...";
-	if (props.searchedRestaurant[0]) {
-		restaurantName = rName.map((restaurant) => {
+	if (props.searchedRestaurants[0]) {
+		const test = props.searchedRestaurants[0].restaurants
+		
+		restaurantName = test.map((restaurant) => {
+			if(restaurant._id === id) {
 			return (
 				<div className="Form">
 					<h1 className="Header">Top Reviewed Items At:</h1>
@@ -108,6 +126,7 @@ function ItemList(props) {
 						<img src={restaurant.img} /> */}
 				</div>
 			);
+			}
 		});
 	}
 
