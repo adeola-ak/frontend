@@ -11,8 +11,8 @@ import RatingList from "./components/RatingList/RatingList";
 
 function App() {
 	// URL VARIABLE
-	const url = "http://localhost:3000/";
-	// const url = "https://aa-palate-backend.herokuapp.com/";
+	// const url = "http://localhost:3000/";
+	const url = "https://aa-palate-backend.herokuapp.com/";
 
 	// State for all restaurants
 	const [restaurantData, setRestaurantData] = useState([]);

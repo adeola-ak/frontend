@@ -6,8 +6,8 @@ import "./RatingList.css";
 
 function RatingList(props) {
 	const id = props.match.params.id;
-	const url = "http://localhost:3000/"
-	// const url = "https://aa-palate-backend.herokuapp.com/";
+	// const url = "http://localhost:3000/"
+	const url = "https://aa-palate-backend.herokuapp.com/";
 
 	// State for item selected for rating view
 	const [searchedItem, setSearchedItem] = React.useState([]);

@@ -7,9 +7,10 @@ import "./ItemList.css";
 function ItemList(props) {
 	const id = props.match.params.id;
 
-	// const url = "https://aa-palate-backend.herokuapp.com/";
+	const url = "https://aa-palate-backend.herokuapp.com/";
 
-	const url = "http://localhost:3000/"
+	// const url = "http://localhost:3000/"
+	
 	const [resItems, setResItems] = React.useState([]);
 
 	const [newItemState, setNewItemState] = React.useState([]);
