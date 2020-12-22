@@ -2,10 +2,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Voces&display=swap");
 
 .MenuBut {
-	/* background-color: rgb(63, 145, 203); */
 	background-color: rgb(0, 122, 255);
 	color: white;
 	margin-top: 60px;
+	margin-bottom: 34px;
+
 	border-radius: 7px;
 	padding: 5px;
 	height: 40px;
@@ -16,14 +17,20 @@
 	font-family: "Voces", cursive;
 }
 
+.restCard {
+	margin: 0 auto;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	border: 1px solid rgb(207, 207, 207);
+	width: 50%;
+}
 .RestName {
-	font-family: "Baloo Da 2", cursive;
-	margin-top: 100px;
+	margin-bottom: 0px;
 }
 
 .helper-text {
-	margin-top: 50px;
-	margin-bottom: -60px;
+	text-align: left;
+	margin-left: 5%;
 }
 .RestName:hover {
 	text-decoration: underline;
@@ -33,12 +40,30 @@
 	display: none;
 }
 
+#restpic {
+	height: 20em;
+}
+
+@media only screen and (max-width: 500px) and (min-width: 0px) {
+	#restpic {
+		height: 10em;
+	}
+
+	.restCard {
+		margin: 0 auto;
+		margin-top: 40px;
+		margin-bottom: 40px;
+		width: 75%;
+	}
+}
+
 @media only screen and (max-width: 1000px) and (min-width: 601px) {
 	.MenuBut {
 		/* background-color: rgb(63, 145, 203); */
 		background-color: rgb(0, 122, 255);
 		color: white;
 		margin-top: 34px;
+
 		border-radius: 7px;
 		padding: 5px;
 		height: 40px;

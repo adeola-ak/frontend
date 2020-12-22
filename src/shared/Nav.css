@@ -41,9 +41,9 @@
 	/* I just copied from title just to have a starting point */
 	text-decoration: none;
 	color: #eae2b7;
-	font-size: 20px;
+	font-size: 24px;
 	padding: 20px;
-	font-family: "Fredoka One", cursive;
+	/* font-family: "Fredoka One", cursive; */
 	/* this is needed if you continue to have this be a smaller font than the title */
 	align-self: center;
 }

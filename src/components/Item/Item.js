@@ -44,6 +44,9 @@ function Item(props) {
 
 			return [renderSubArray];
 		});
+	} else {
+		return <h1>ADD NOW</h1>;
+		//something isnt working here
 	}
 	return <>{renderItems}</>;
 }
